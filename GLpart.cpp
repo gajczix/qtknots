@@ -221,17 +221,14 @@ void GLpart::parametricCentreChecked(complex z) {
 
 void GLpart::generatePictures(std::string name) {
   std::string command =
-      "exec bash -c '/usr/local/bin/neato -T png -s400 graphs/" + name +
+      "exec bash -c 'neato -T png -s400 graphs/" + name +
       ".dot > pictures/" + name + ".png'";
   std::system(command.c_str());
 
-  command = "exec bash -c 'chmod +x pdcodes/" + name + ".py'";
+  command = "exec bash -c 'rm -f pdpictures/" + name + ".svg'";
   std::system(command.c_str());
 
-  command = "exec bash -c 'rm pdpictures/" + name + ".svg'";
-  std::system(command.c_str());
-
-  command = "./pdcodes/" + name + ".py";
+  command = "pyenv/bin/python2.7 ./pdcodes/" + name + ".py";
   write_log(command);
   std::system(command.c_str());
 }

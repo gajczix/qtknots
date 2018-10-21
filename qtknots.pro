@@ -4,8 +4,22 @@
 
 TEMPLATE = app
 TARGET = qtknots
-INCLUDEPATH += /usr/local/Cellar/gsl/2.4/include /usr/local/Cellar/freeglut/3.0.0/include
-LIBS += -L/usr/local/Cellar/gsl/2.4/lib -lgsl
+CONFIG += c++14 debug
+
+# pkg-config
+QT_CONFIG -= no-pkg-config
+CONFIG += link_pkgconfig
+
+PKGCONFIG += gsl
+mac {
+  PKGCONFIG += freeglut
+  QMAKE_CXX = c++
+  QMAKE_CC = cc
+  QMAKE_LINK = c++
+}
+unix:!mac {
+  PKGCONFIG += glu
+}
 
 # The following define makes your compiler warn you if you use any
 # feature of Qt which has been marked as deprecated (the exact warnings
@@ -13,9 +27,6 @@ LIBS += -L/usr/local/Cellar/gsl/2.4/lib -lgsl
 # deprecated API in order to know how to port your code away from it.
 DEFINES += QT_DEPRECATED_WARNINGS
 
-QMAKE_CC = /usr/bin/clang
-QMAKE_CXX = /usr/bin/clang++
-QMAKE_LFLAGS += -F/System/Library/Frameworks -L/usr/lib
 # You can also make your code fail to compile if you use deprecated APIs.
 # In order to do so, uncomment the following line.
 # You can also select to disable deprecated APIs only up to a certain version of Qt.

@@ -4,7 +4,7 @@
 
 #include "Knot.h"
 #include <GL/glut.h>
-#include <OpenGL/OpenGL.h>
+/* #include <OpenGL/OpenGL.h> */
 #include <QGLWidget>
 #include <QtCore/qglobal.h>
 #include <QtGui>

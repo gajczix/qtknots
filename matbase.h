@@ -2,6 +2,7 @@
 #define MATBASE_H
 #include "log.h"
 #include <QString>
+#include <complex>
 #include <cstdlib>
 #include <gsl/gsl_complex.h>
 #include <gsl/gsl_complex_math.h>
@@ -179,7 +180,7 @@ public:
     }
   }
 
-  map(std::vector<std::pair<std::pair<int, int>, complex>> m, QString n)
+  map(std::vector<std::pair<std::pair<int, int>, std::complex<double>>> m, QString n)
       : function(n) {
     for (int i = 0; i < _SIZE; i++) {
       for (int j = 0; j < _SIZE; j++) {
@@ -190,9 +191,9 @@ public:
     for (auto &elem : m) {
       int i = elem.first.first;
       int j = elem.first.second;
-      complex value = elem.second;
+      std::complex<double> value = elem.second;
 
-      fun_matrix.coef[i][j] = value;
+      fun_matrix.coef[i][j] = complex(value.real(), value.imag());
     }
   }
 

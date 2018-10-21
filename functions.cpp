@@ -1,3 +1,5 @@
+#include <complex>
+
 #include "functions.h"
 /// here we declare all functions. The way to add a new function is the
 /// following: first one need to define three functions of type
@@ -81,6 +83,8 @@ parametr T235p(T235_x, T235_y, T235_dx, T235_dy, QString("x^3-y^5"));
 // map T235(, QString("x^3-y^5"));
 
 map RandomFunc;
+
+using namespace std::complex_literals;
 
 map Interesting({{{0, 0}, (-0.445727 + 1.305957i)},
                  {{0, 2}, -0.126224 + 2.484937i},
@@ -240,7 +244,8 @@ void initialize_maps(std::vector<function *> &pv) {
   Interesting4.printFriendlyCoefMatrix();
   Interesting4.printCoefMatrix();
   RandomFunc.printFriendlyCoefMatrix();
-  complex liczba = 8.283527 + -2.195920i;
+  std::complex<double> liczba_std = 8.283527 + -2.195920i;
+  complex liczba = complex(liczba_std.real(), liczba_std.imag());
   write_log("ostatni test" +  liczba.to_string());
 
   pv = ParametrVector;

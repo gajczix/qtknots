@@ -92,10 +92,10 @@ Obraz::Obraz(QWidget *parent) : QWidget(parent) {
 
   connect(cowidac->rDoubleSlider, SIGNAL(DoubleValueChanged(double)), rysunekGL,
           SLOT(rChanged(double)));
-  connect(cowidac->z1Slider, SIGNAL(ComplexValueChanged(zespolone)), rysunekGL,
-          SLOT(z1Changed(zespolone)));
-  connect(cowidac->z2Slider, SIGNAL(ComplexValueChanged(zespolone)), rysunekGL,
-          SLOT(z2Changed(zespolone)));
+  connect(cowidac->z1Slider, SIGNAL(ComplexValueChanged(complex)), rysunekGL,
+          SLOT(z1Changed(complex)));
+  connect(cowidac->z2Slider, SIGNAL(ComplexValueChanged(complex)), rysunekGL,
+          SLOT(z2Changed(complex)));
 
   connect(rysunekGL, SIGNAL(xRotChanged(int)), cowidac->xRotSlider,
           SLOT(externalValue(int)));
@@ -105,10 +105,10 @@ Obraz::Obraz(QWidget *parent) : QWidget(parent) {
           SLOT(externalValue(int)));
   connect(rysunekGL, SIGNAL(zCenChanged(float)), cowidac->zCenSlider,
           SLOT(externalValue(float)));
-  connect(rysunekGL, SIGNAL(xCenChanged(zespolone)), cowidac->z1Slider,
-          SLOT(externalComplex(zespolone)));
-  connect(rysunekGL, SIGNAL(yCenChanged(zespolone)), cowidac->z2Slider,
-          SLOT(externalComplex(zespolone)));
+  connect(rysunekGL, SIGNAL(xCenChanged(complex)), cowidac->z1Slider,
+          SLOT(externalComplex(complex)));
+  connect(rysunekGL, SIGNAL(yCenChanged(complex)), cowidac->z2Slider,
+          SLOT(externalComplex(complex)));
 
   // dodajemy menu
 
@@ -176,8 +176,8 @@ Obraz::Obraz(QWidget *parent) : QWidget(parent) {
   pasekmenu->addAction(paramA);
   connect(paramA, SIGNAL(triggered()), this, SLOT(askForCentre()));
 
-  connect(this, SIGNAL(changeCentre(zespolone)), rysunekGL,
-          SLOT(parametricCentreChecked(zespolone)));
+  connect(this, SIGNAL(changeCentre(complex)), rysunekGL,
+          SLOT(parametricCentreChecked(complex)));
 }
 
 void Obraz::f_global() {
