@@ -7,6 +7,7 @@
 std::vector<std::vector<int>> getAllCycles(graph_type &graph) {
   // TODO: implement
   // std::vector<std::vector<std::pair<int, int>>> a = graph.edges;
+  (void) graph;
   return std::vector<std::vector<int>>();
 }
 

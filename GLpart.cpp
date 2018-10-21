@@ -195,7 +195,7 @@ void GLpart::wheelEvent(QWheelEvent *event) {
 
 void GLpart::functionChanged(int najaka) {
 
-  if (najaka == ParamVector.size() - 1) {
+  if (najaka == (int)ParamVector.size() - 1) {
     write_log("random function changed:");
     map *random = new map();
     param_or_map = random;
