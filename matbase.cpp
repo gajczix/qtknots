@@ -66,9 +66,7 @@ complex matrix::compute(complex x, complex y) {
   return result;
 }
 
-complex empty_fun(complex, complex) { return complex(0.0, 0.0); }
-
-complex empty_fun2(complex) { return complex(0.0, 0.0); }
+complex empty_function(complex) { return complex(0.0, 0.0); }
 
 inline fourvector operator*(long double d, fourvector T) {
   return fourvector(T.x() * d, T.y() * d, T.z() * d, T.u() * d);
@@ -227,16 +225,12 @@ fourvector pickRandom4v(double R) {
 void restartSearch(int &counter, int &ecounter, fourvector &z, double &scalar,
                    double r) {
   z = pickRandom4v(r);
-  // write_log("start point: " + z.to_string());
   counter = 1;
   ecounter = 1;
   scalar = r;
 }
 
 bool map::getToThePoint(long double r, fourvector &zstart) {
-
-  write_log("getting start point");
-
   fourvector z;
   double scalar;
   int counter, extra_counter;
@@ -255,9 +249,6 @@ bool map::getToThePoint(long double r, fourvector &zstart) {
     fourvector gradient(poch1.real(), -1 * poch1.imag(), poch2.real(),
                         -1 * poch2.imag());
     gradient = gradient - ((gradient * z) * (1 / r) * z);
-
-    // write_log("value of f " + value.to_string() +
-    //          " extra = " + std::to_string(extra_counter));
     extra_counter++;
 
     if (extra_counter > 10) {
@@ -298,10 +289,6 @@ bool map::getToThePoint(long double r, fourvector &zstart) {
       return false;
     }
   }
-
-  write_log("picked z: " + z.to_string() +
-            ", steps: " + std::to_string(all_steps));
-  write_log("z length " + std::to_string(z.length()));
   zstart = z;
 
   return true;
@@ -309,9 +296,9 @@ bool map::getToThePoint(long double r, fourvector &zstart) {
 
 bool map::computePoints(std::vector<fourvector> &resultPoints, double radius,
                         long double h, double steps_multiplier) {
-  fourvector Zstart;
+  fourvector startPoint;
 
-  getToThePoint(radius, Zstart);
+  getToThePoint(radius, startPoint);
 
   std::vector<fourvector> points;
 
@@ -321,8 +308,8 @@ bool map::computePoints(std::vector<fourvector> &resultPoints, double radius,
   long double distance_from_100 = 100000.0;
   long double odsuw3 = 0.0;
 
-  fourvector current_point = Zstart;
-  fourvector refpunkt = Zstart;
+  fourvector current_point = startPoint;
+  fourvector refpunkt = startPoint;
   fourvector refpunkt2 = this->centerPoint();
 
   points.push_back(refpunkt);
@@ -384,7 +371,7 @@ bool map::computePoints(std::vector<fourvector> &resultPoints, double radius,
   }
 }
 
-void map::printFriendlyCoefMatrix() {
+void map::printMapMatrix() {
   char buffer[1000];
   write_log("begin of function");
   int n = this->fun_matrix.size();

@@ -51,7 +51,7 @@ typedef complex (*param)(complex);
 
 complex empty_fun(complex, complex);
 
-complex empty_fun2(complex);
+complex empty_function(complex);
 
 class fourvector {
 private:
@@ -203,7 +203,7 @@ public:
 
     void printCoefMatrix();
 
-    void printFriendlyCoefMatrix();
+    void printMapMatrix();
 };
 
 class parametr : public function {
@@ -222,10 +222,10 @@ public:
     }
 
     parametr() : function(QString("empty fun")) {
-      Px = empty_fun2;
-      Py = empty_fun2;
-      Dx = empty_fun2;
-      Dy = empty_fun2;
+      Px = empty_function;
+      Py = empty_function;
+      Dx = empty_function;
+      Dy = empty_function;
     }
 
     /// reverse complex point to get it in 4 dimensions.

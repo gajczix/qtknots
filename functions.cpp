@@ -227,6 +227,6 @@ void initialize_maps(std::vector<function *> &pv) {
   ParametrVector.push_back(&RandomFunc);
   write_log(RandomFunc.get_name());
 
-  RandomFunc.printFriendlyCoefMatrix();
+  RandomFunc.printMapMatrix();
   pv = ParametrVector;
 }
