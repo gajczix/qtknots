@@ -35,3 +35,9 @@ TO CLEAN AFTER INSTALLATION, CALL:
 ```
 ./qtknots/clean.sh
 ```
+
+THE PROGRAM ALLOWS TO INPUT FUNCTION FROM THE FILE. THE SAMPLE FILE IS INCLUDED - PLEASE FOLLOW THE FORMAT:
+```
+name_of_function_without_spaces
+power_x power_y real imag 
+```
