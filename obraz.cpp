@@ -1,6 +1,5 @@
 #include <QInputDialog>
 #include <QMenuBar>
-#include <QString>
 #include <QFileDialog>
 #include <QWidget>
 #include <cstdio>
@@ -195,14 +194,14 @@ Obraz::Obraz(QWidget *parent) : QWidget(parent) {
 map parseMapFromString(std::string input) {
   std::string line;
   std::istringstream f(input);
-  std::vector<std::pair<std::pair<int, int>, std::complex<double>>> coefficient;
+  std::vector<std::pair<std::pair<int, int>, complex>> coefficient;
   std::string name;
   std::getline(f, name);
   while (std::getline(f, line)) {
     int i,j;
     double x,y;
     sscanf(line.c_str(), "%d %d %lf %lf", &i, &j, &x, &y);
-    coefficient.emplace_back(std::make_pair(std::make_pair(i, j), std::complex<double>(x, y)));
+    coefficient.emplace_back(std::make_pair(std::make_pair(i, j), complex(x, y)));
     std::cout << line << std::endl;
   }
   return map(coefficient, QString::fromStdString(name));
@@ -258,7 +257,7 @@ void Obraz::askForCentre() {
                                       tr("Give imaginary part"), 0.0, -20,
                                       20.99, 2, &ok2);
   if (ok1 && ok2) {
-    emit changeCentre(std::complex<double>(r1, r2));
+    emit changeCentre(complex(r1, r2));
   }
 }
 

@@ -9,45 +9,45 @@
 /// MapsVector.push_back(new_function).
 
 
-std::complex<double> jaskolkax(std::complex<double> z) { return z * z * z - z * 3.0; }
-std::complex<double> jaskolkay(std::complex<double> z) { return z * z * z * z - z * z * 2.0; }
-std::complex<double> jaskolkadx(std::complex<double> z) { return z * z * 3.0 - 3.0; }
-std::complex<double> jaskolkady(std::complex<double> z) { return z * z * z * 4.0 - z * 4.0; }
+complex jaskolkax(complex z) { return z * z * z - z * 3.0; }
+complex jaskolkay(complex z) { return z * z * z * z - z * z * 2.0; }
+complex jaskolkadx(complex z) { return z * z * 3.0 - 3.0; }
+complex jaskolkady(complex z) { return z * z * z * 4.0 - z * 4.0; }
 
-std::complex<double> t23_x(std::complex<double> z) { return z * z; }
-std::complex<double> t23_y(std::complex<double> z) { return z * z * z; }
-std::complex<double> t23_dx(std::complex<double> z) { return z * 2.0; }
-std::complex<double> t23_dy(std::complex<double> z) { return z * z * 3.0; }
+complex t23_x(complex z) { return z * z; }
+complex t23_y(complex z) { return z * z * z; }
+complex t23_dx(complex z) { return z * 2.0; }
+complex t23_dy(complex z) { return z * z * 3.0; }
 
-std::complex<double> t34_x(std::complex<double> z) { return z * z * z; }
-std::complex<double> t34_y(std::complex<double> z) { return z * z * z * z; }
-std::complex<double> t34_dx(std::complex<double> z) { return z * z * 3.0; }
-std::complex<double> t34_dy(std::complex<double> z) { return z * z * z * 4.0; }
+complex t34_x(complex z) { return z * z * z; }
+complex t34_y(complex z) { return z * z * z * z; }
+complex t34_dx(complex z) { return z * z * 3.0; }
+complex t34_dy(complex z) { return z * z * z * 4.0; }
 
-std::complex<double> t35_x(std::complex<double> z) { return z * z * z; }
-std::complex<double> t35_y(std::complex<double> z) { return z * z * z * z * z; }
-std::complex<double> t35_dx(std::complex<double> z) { return z * z * 3.0; }
-std::complex<double> t35_dy(std::complex<double> z) { return z * z * z * z * 5.0; }
+complex t35_x(complex z) { return z * z * z; }
+complex t35_y(complex z) { return z * z * z * z * z; }
+complex t35_dx(complex z) { return z * z * 3.0; }
+complex t35_dy(complex z) { return z * z * z * z * 5.0; }
 
-std::complex<double> t25_x(std::complex<double> z) { return z * z; }
-std::complex<double> t25_y(std::complex<double> z) { return z * z * z * z * z; }
-std::complex<double> t25_dx(std::complex<double> z) { return z * 2.0; }
-std::complex<double> t25_dy(std::complex<double> z) { return z * z * z * z * 5.0; }
+complex t25_x(complex z) { return z * z; }
+complex t25_y(complex z) { return z * z * z * z * z; }
+complex t25_dx(complex z) { return z * 2.0; }
+complex t25_dy(complex z) { return z * z * z * z * 5.0; }
 
-std::complex<double> petlax(std::complex<double> z) { return z * z + std::complex<double>(1, 0); }
-std::complex<double> petlay(std::complex<double> z) { return z * z * z + z; }
-std::complex<double> petladx(std::complex<double> z) { return z * 2.0; }
-std::complex<double> petlady(std::complex<double> z) { return z * z * 3.0 + 1.0; }
+complex petlax(complex z) { return z * z + complex(1, 0); }
+complex petlay(complex z) { return z * z * z + z; }
+complex petladx(complex z) { return z * 2.0; }
+complex petlady(complex z) { return z * z * 3.0 + 1.0; }
 
-std::complex<double> T234_x(std::complex<double> t) { return t * t + t * t * t; }
-std::complex<double> T234_y(std::complex<double> t) { return t * t * t * t; }
-std::complex<double> T234_dx(std::complex<double> t) { return 2 * t + 3 * t * t; }
-std::complex<double> T234_dy(std::complex<double> t) { return 4 * t * t * t; }
+complex T234_x(complex t) { return t * t + t * t * t; }
+complex T234_y(complex t) { return t * t * t * t; }
+complex T234_dx(complex t) { return 2 * t + 3 * t * t; }
+complex T234_dy(complex t) { return 4 * t * t * t; }
 
-std::complex<double> T235_x(std::complex<double> t) { return t * t; }
-std::complex<double> T235_y(std::complex<double> t) { return t * t * t + t * t * t * t * t; }
-std::complex<double> T235_dx(std::complex<double> t) { return 2 * t; }
-std::complex<double> T235_dy(std::complex<double> t) { return 3 * t * t + 5 * t * t * t * t; }
+complex T235_x(complex t) { return t * t; }
+complex T235_y(complex t) { return t * t * t + t * t * t * t * t; }
+complex T235_dx(complex t) { return 2 * t; }
+complex T235_dy(complex t) { return 3 * t * t + 5 * t * t * t * t; }
 
 parametr jaskp(jaskolkax, jaskolkay, jaskolkadx, jaskolkady,
                QString("Swallowtail"));

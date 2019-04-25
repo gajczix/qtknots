@@ -53,8 +53,8 @@ signals:
   void yRotChanged(int);
   void zRotChanged(int);
   void zCenChanged(float);
-  void xCenChanged(std::complex<double>);
-  void yCenChanged(std::complex<double>);
+  void xCenChanged(complex);
+  void yCenChanged(complex);
 
 public slots:
 
@@ -67,15 +67,15 @@ public slots:
   void zCentered(float);
 
   void rChanged(double);
-  void z1Changed(std::complex<double>);
-  void z2Changed(std::complex<double>);
+  void z1Changed(complex);
+  void z2Changed(complex);
 
   void functionChanged(int);
   void functionChanged(map);
   void widthChanged(double);
 
   void recomputeLists();
-  void parametricCentreChecked(std::complex<double>);
+  void parametricCentreChecked(complex);
 
   void generatePictures(std::string name);
 };

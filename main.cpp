@@ -1,6 +1,6 @@
 #include "obraz.h"
 #include <QApplication>
-#include <cstdio>
+
 using namespace std;
 
 int main(int argc, char *argv[]) {

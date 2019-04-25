@@ -1,13 +1,12 @@
 #include "matbase.h"
-#include <cmath>
 
 /// program contains neccessary mathematical objects
 int seed = time(NULL);
 
-std::complex<double> operator*(std::complex<double> comp, float scalar){
-  return comp * std::complex<double>(scalar, 0);
+complex operator*(complex comp, float scalar){
+  return comp * complex(scalar, 0);
 }
-std::complex<double> operator*(float scalar, std::complex<double> comp){
+complex operator*(float scalar, complex comp){
   return comp * scalar;
 }
 
@@ -42,22 +41,22 @@ matrix matrix::giveDy() {
   return Dy;
 }
 
-std::complex<double> pow(std::complex<double> x, int n) {
-  std::complex<double> result = 1;
+complex pow(complex x, int n) {
+  complex result = 1;
   for (int i = 0; i < n; i++) {
     result = x * result;
   }
   return result;
 }
 
-std::complex<double> matrix::compute(fourvector v) {
-  std::complex<double> x(v.x(), v.y());
-  std::complex<double> y(v.z(), v.u());
+complex matrix::compute(fourvector v) {
+  complex x(v.x(), v.y());
+  complex y(v.z(), v.u());
   return compute(x, y);
 }
 
-std::complex<double> matrix::compute(std::complex<double> x, std::complex<double> y) {
-  std::complex<double> result = 0;
+complex matrix::compute(complex x, complex y) {
+  complex result = 0;
   int n = this->size();
   for (int i = 0; i < n; i++) {
     for (int j = 0; j < n; j++) {
@@ -67,9 +66,9 @@ std::complex<double> matrix::compute(std::complex<double> x, std::complex<double
   return result;
 }
 
-std::complex<double> empty_fun(std::complex<double>, std::complex<double>) { return std::complex<double>(0.0, 0.0); }
+complex empty_fun(complex, complex) { return complex(0.0, 0.0); }
 
-std::complex<double> empty_fun2(std::complex<double>) { return std::complex<double>(0.0, 0.0); }
+complex empty_fun2(complex) { return complex(0.0, 0.0); }
 
 inline fourvector operator*(long double d, fourvector T) {
   return fourvector(T.x() * d, T.y() * d, T.z() * d, T.u() * d);
@@ -135,11 +134,11 @@ long double fourvector::length() {
 }
 
 fourvector map::trajectory(fourvector K) {
-  std::complex<double> z1(K.x(), K.y());
-  std::complex<double> z2(K.z(), K.u());
+  complex z1(K.x(), K.y());
+  complex z2(K.z(), K.u());
 
-  std::complex<double> poch1 = fun_matrix.giveDx().compute(z1, z2);
-  std::complex<double> poch2 = fun_matrix.giveDy().compute(z1, z2);
+  complex poch1 = fun_matrix.giveDx().compute(z1, z2);
+  complex poch2 = fun_matrix.giveDy().compute(z1, z2);
 
   fourvector direction1(poch1.real(), -poch1.imag(), poch2.real(), -poch2.imag());
   fourvector direction2(poch1.imag(), poch1.real(), poch2.imag(), poch2.real());
@@ -150,9 +149,9 @@ fourvector map::trajectory(fourvector K) {
 }
 
 // Newton method
-std::complex<double> fakeDoStep(parametr m, std::complex<double> StartPoint, long double skok) {
-  std::complex<double> z0 = m.pdz(StartPoint);
-  std::complex<double> z1 = StartPoint + z0 * skok;
+complex fakeDoStep(parametr m, complex StartPoint, long double skok) {
+  complex z0 = m.pdz(StartPoint);
+  complex z1 = StartPoint + z0 * skok;
   return StartPoint + (z0 + m.pdz(z1)) * (0.5 * skok);
 }
 
@@ -167,14 +166,14 @@ fourvector fakeDoStep(map m, fourvector StartPoint, long double skok,
 }
 
 // Function to search on complex plane intersection with sphere.
-bool parametr::getToThePoint(long double h, long double r, std::complex<double> &zstart) {
-  std::complex<double> z = zstart;
-  std::complex<double> z1, z2, z3, z4;
+bool parametr::getToThePoint(long double h, long double r, complex &zstart) {
+  complex z = zstart;
+  complex z1, z2, z3, z4;
   long double k1, k2, k3, k4;
-  static std::complex<double> kroka(1.0, 0.0);
-  static std::complex<double> krokb(-1.0, 0.0);
-  static std::complex<double> krokc(0.0, 1.0);
-  static std::complex<double> krokd(0.0, -1.0);
+  static complex kroka(1.0, 0.0);
+  static complex krokb(-1.0, 0.0);
+  static complex krokc(0.0, 1.0);
+  static complex krokd(0.0, -1.0);
 
   long double skok = h * 100.0;
   long double k = std::abs(this->distance(z) - r);
@@ -243,13 +242,13 @@ bool map::getToThePoint(long double r, fourvector &zstart) {
   int counter, extra_counter;
   long long all_steps = 0;
   restartSearch(counter, extra_counter, z, scalar, r);
-  std::complex<double> value = fun_matrix.compute(z);
+  complex value = fun_matrix.compute(z);
 
   while (std::abs(value) > 0.01) {
     counter++;
     all_steps++;
-    std::complex<double> poch1 = fun_matrix.giveDx().compute(z);
-    std::complex<double> poch2 = fun_matrix.giveDy().compute(z);
+    complex poch1 = fun_matrix.giveDx().compute(z);
+    complex poch2 = fun_matrix.giveDy().compute(z);
 
     value = fun_matrix.compute(z);
 
@@ -274,7 +273,7 @@ bool map::getToThePoint(long double r, fourvector &zstart) {
 
     zz = zz * (r / zz.length());
 
-    std::complex<double> valueZZ = fun_matrix.compute(zz);
+    complex valueZZ = fun_matrix.compute(zz);
 
     if (std::abs(value) <= std::abs(valueZZ)) {
       scalar *= 0.1;
@@ -391,8 +390,8 @@ void map::printFriendlyCoefMatrix() {
   int n = this->fun_matrix.size();
   for (int i = 0; i < n; i++) {
     for (int j = 0; j < n; j++) {
-      std::complex<double> value = this->fun_matrix.coef[i][j];
-      if (value != std::complex<double>(0,0)) {
+      complex value = this->fun_matrix.coef[i][j];
+      if (value != complex(0,0)) {
         sprintf(buffer, "%d %d %lf %lf", i, j, value.real(), value.imag());
         write_log(buffer);
       }
@@ -405,11 +404,11 @@ void map::printFriendlyCoefMatrix() {
 bool parametr::computePoints(std::vector<fourvector> &resultPoints,
                              double radius, long double h,
                              double steps_multiplier) {
-  std::complex<double> Zstart;
+  complex Zstart;
   int count = 0;
   do {
     count++;
-    Zstart = std::complex<double>(RandomValue(), RandomValue());
+    Zstart = complex(RandomValue(), RandomValue());
   } while (!this->getToThePoint(0.001, radius, Zstart) && (count < 1000));
   if (count > 999) {
     write_log("It looks like the intersection is empty \n");
@@ -424,7 +423,7 @@ bool parametr::computePoints(std::vector<fourvector> &resultPoints,
   long double distance_from_100 = 100000.0;
   long double odsuw3 = 0.0;
 
-  std::complex<double> current_point = Zstart;
+  complex current_point = Zstart;
 
   fourvector refpunkt = this->pointOn4Sphere(Zstart);
   fourvector refpunkt2 = this->centerPoint();
@@ -499,7 +498,7 @@ map::map() : function(QString("map:random")) {
       if (i != 0 || j != 0) {
         name += " ,";
       }
-      std::complex<double> rand(RandomValue(), RandomValue());
+      complex rand(RandomValue(), RandomValue());
       fun_matrix.coef[i][j] = rand;
       char buffer[200];
       sprintf(buffer, "%d %d %lf %lf\n", i, j, rand.real(), rand.imag());
