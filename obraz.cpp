@@ -6,7 +6,7 @@
 
 #include "obraz.h"
 
-kontrolka::kontrolka(QWidget *parent) : QWidget(parent) {
+controlPanel::controlPanel(QWidget *parent) : QWidget(parent) {
 
   xRotSlider = new RotSlider(QString("Rotation around Ox="), this);
   yRotSlider = new RotSlider(QString("Rotation around Oy="), this);
@@ -45,7 +45,7 @@ Obraz::Obraz(QWidget *parent) : QWidget(parent) {
 
   rysunekGL->setMinimumSize(600, 600);
 
-  cowidac = new kontrolka(this);
+  cowidac = new controlPanel(this);
   cowidac->setMinimumSize(300, 300);
   cowidac->setMaximumWidth(500);
 
@@ -150,35 +150,35 @@ Obraz::Obraz(QWidget *parent) : QWidget(parent) {
   {
     QAction *G05A = new QAction(tr("0.5"), this);
     gruboscMenu->addAction(G05A);
-    connect(G05A, SIGNAL(triggered()), this, SLOT(wGrubosc05()));
+    connect(G05A, SIGNAL(triggered()), this, SLOT(wWidth05()));
 
     QAction *G07A = new QAction(tr("0.7"), this);
     gruboscMenu->addAction(G07A);
-    connect(G07A, SIGNAL(triggered()), this, SLOT(wGrubosc07()));
+    connect(G07A, SIGNAL(triggered()), this, SLOT(wWidth07()));
 
     QAction *G10A = new QAction(tr("1.0"), this);
     gruboscMenu->addAction(G10A);
-    connect(G10A, SIGNAL(triggered()), this, SLOT(wGrubosc10()));
+    connect(G10A, SIGNAL(triggered()), this, SLOT(wWidth10()));
 
     QAction *G12A = new QAction(tr("1.2"), this);
     gruboscMenu->addAction(G12A);
-    connect(G12A, SIGNAL(triggered()), this, SLOT(wGrubosc12()));
+    connect(G12A, SIGNAL(triggered()), this, SLOT(wWidth12()));
 
     QAction *G15A = new QAction(tr("1.5"), this);
     gruboscMenu->addAction(G15A);
-    connect(G15A, SIGNAL(triggered()), this, SLOT(wGrubosc15()));
+    connect(G15A, SIGNAL(triggered()), this, SLOT(wWidth15()));
 
     QAction *G17A = new QAction(tr("1.7"), this);
     gruboscMenu->addAction(G17A);
-    connect(G17A, SIGNAL(triggered()), this, SLOT(wGrubosc17()));
+    connect(G17A, SIGNAL(triggered()), this, SLOT(wWidth17()));
 
     QAction *G20A = new QAction(tr("2.0"), this);
     gruboscMenu->addAction(G20A);
-    connect(G20A, SIGNAL(triggered()), this, SLOT(wGrubosc20()));
+    connect(G20A, SIGNAL(triggered()), this, SLOT(wWidth20()));
 
     QAction *G25A = new QAction(tr("2.5"), this);
     gruboscMenu->addAction(G25A);
-    connect(G25A, SIGNAL(triggered()), this, SLOT(wGrubosc25()));
+    connect(G25A, SIGNAL(triggered()), this, SLOT(wWidth25()));
   }
   connect(this, SIGNAL(changeWidth(double)), rysunekGL,
           SLOT(widthChanged(double)));
@@ -232,21 +232,21 @@ void Obraz::f_global() {
   reloadPictures(name);
 }
 
-void Obraz::wGrubosc05() { emit changeWidth(0.5); }
+void Obraz::wWidth05() { emit changeWidth(0.5); }
 
-void Obraz::wGrubosc07() { emit changeWidth(0.7); }
+void Obraz::wWidth07() { emit changeWidth(0.7); }
 
-void Obraz::wGrubosc10() { emit changeWidth(1.0); }
+void Obraz::wWidth10() { emit changeWidth(1.0); }
 
-void Obraz::wGrubosc12() { emit changeWidth(2.0); }
+void Obraz::wWidth12() { emit changeWidth(2.0); }
 
-void Obraz::wGrubosc15() { emit changeWidth(3.0); }
+void Obraz::wWidth15() { emit changeWidth(3.0); }
 
-void Obraz::wGrubosc17() { emit changeWidth(5.0); }
+void Obraz::wWidth17() { emit changeWidth(5.0); }
 
-void Obraz::wGrubosc20() { emit changeWidth(8.0); }
+void Obraz::wWidth20() { emit changeWidth(8.0); }
 
-void Obraz::wGrubosc25() { emit changeWidth(10.0); }
+void Obraz::wWidth25() { emit changeWidth(10.0); }
 
 void Obraz::askForCentre() {
   bool ok1, ok2;

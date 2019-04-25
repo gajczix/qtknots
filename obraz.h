@@ -9,19 +9,8 @@
 #include <QWidget>
 #include <vector>
 
-class kontrolka : public QWidget {
+class controlPanel : public QWidget {
   Q_OBJECT
-
-  // TODO: przeczytac to
-  // czynimy suwaki publiczne,
-  // zeby miec dostep do wszystkich
-  // sygnalow, ktore one wysylaja.
-  // w przeciwnym razie klasa kontrolka
-  // musialaby miec cala siec slotow
-  // i sygnalow do przekazywania danych
-  // inna mozliwosc to uczynienie klasy
-  // obraz przyjacielska. to wlasciwie
-  // na jedno wychodzi.
 
 public:
   RotSlider *xRotSlider;
@@ -35,7 +24,7 @@ public:
   ComplexSlider *z2Slider;
   QVBoxLayout *kontrolLayout;
 
-  kontrolka(QWidget *parent = 0);
+  controlPanel(QWidget *parent = 0);
 };
 
 class Obraz : public QWidget {
@@ -46,7 +35,7 @@ public:
 
 private:
   GLpart *rysunekGL;
-  kontrolka *cowidac;
+  controlPanel *cowidac;
   QLabel *DNindex;
   QLabel *picture1;
   QLabel *picture2;
@@ -62,24 +51,17 @@ signals:
 
 public slots:
 
-  /* void fJaskolka();
- void fPetla();
- void fT23();
- void fT25();
- void fT34();
- void fT35();*/
-  //   void fT234();
   void f_global();
   void read_from_file();
 
-  void wGrubosc05();
-  void wGrubosc07();
-  void wGrubosc10();
-  void wGrubosc12();
-  void wGrubosc15();
-  void wGrubosc17();
-  void wGrubosc20();
-  void wGrubosc25();
+  void wWidth05();
+  void wWidth07();
+  void wWidth10();
+  void wWidth12();
+  void wWidth15();
+  void wWidth17();
+  void wWidth20();
+  void wWidth25();
 
   void askForCentre();
 

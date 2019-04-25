@@ -1,13 +1,6 @@
 #include <complex>
 
 #include "functions.h"
-/// here we declare all functions. The way to add a new function is the
-/// following: first one need to define three functions of type
-/// complex(complex, complex) : complex means complex in Polish: first
-/// one is the function two next must be partial derivatives then one declares a
-/// map by map new_function(f,fx,fy,QString("name")); and then one adds
-/// MapsVector.push_back(new_function).
-
 
 complex jaskolkax(complex z) { return z * z * z - z * 3.0; }
 complex jaskolkay(complex z) { return z * z * z * z - z * z * 2.0; }
@@ -81,7 +74,6 @@ map T234({{{4, 0}, 1}, {{2, 1}, -2}, {{1, 2}, -4}, {{0, 3}, -1}, {{0, 2}, 1}},
          QString("map:T234"));
 
 parametr T235p(T235_x, T235_y, T235_dx, T235_dy, QString("x^3-y^5"));
-// map T235(, QString("x^3-y^5"));
 
 map RandomFunc;
 
@@ -102,14 +94,7 @@ map Interesting({{{0, 0}, (-0.445727 + 1.305957i)},
                  {{4, 4}, -3.164222 + -9.985651i},
                  {{4, 6}, -9.193600 + 8.403399i},
                  {{8, 8}, 4.594428 + -7.025386i}},
-                // (-6.136970 + -2.485943i)*x^4*y^8 + (6.717219 + 1.018566i)*x^6
-                // + (1.520688 + 1.075249i)*x^6*y^2 + (9.310661 +
-                // -4.923976i)*x^6*y^4 + (4.684237 + -0.851471i)*x^6*y^6 +
-                // (-9.028730 + 9.113870i)*x^6*y^8 + (-5.260118 + 3.021248i)*x^8
-                // + (9.528650 + 8.086544i)*x^8*y^2 + (-5.772620 +
-                // 0.817794i)*x^8*y^4 + (-1.306335 + -8.883338i)*x^8*y^6
-
-                QString("Interesting1"));
+                QString("Sample_function_1"));
 
 map Interesting2(
     {{{0, 0}, 1.092680 + 1.609801i},   {{0, 2}, -4.442457 + 1.562065i},
@@ -127,7 +112,7 @@ map Interesting2(
      {{8, 0}, -3.798988 + -6.980100i}, {{8, 2}, 0.420889 + 6.597741i},
      {{8, 4}, -9.886540 + 7.141485i},  {{8, 6}, 2.001604 + 9.288251i},
      {{8, 8}, 4.982076 + 1.294225i},   {{8, 10}, -4.032252 + 2.452472i}},
-    QString("Interesting2"));
+    QString("Sample_function_2"));
 
 map Interesting3(
     {{{0, 0}, -3.529319 + -5.840687i}, {{0, 2}, -5.017438 + 1.529616i},
@@ -143,7 +128,7 @@ map Interesting3(
      {{8, 0}, -9.481358 + 9.511357i},  {{8, 2}, -3.370252 + 4.729921i},
      {{8, 4}, -6.140815 + -2.676954i}, {{8, 6}, -3.845788 + 1.023939i},
      {{8, 8}, 5.920479 + -9.497867i}},
-    QString("Interesting3"));
+    QString("Sample_function_3"));
 
 map Interesting4(
     {{{0, 0}, -1.372483 + -5.411576i}, {{0, 2}, -8.494251 + -0.237448i},
@@ -161,7 +146,7 @@ map Interesting4(
      {{8, 0}, -9.355703 + -4.624793i}, {{8, 2}, 7.946058 + -4.682592i},
      {{8, 4}, 2.887755 + -0.704872i},  {{8, 6}, 5.247914 + 2.465825i},
      {{8, 8}, -5.383826 + 6.921710i},  {{8, 10}, 1.922615 + -8.315015i}},
-    QString("Interesting4"));
+    QString("Sample_function_4"));
 
 map Intersting5(
     {{{0, 0}, 2.791791 + -2.950850i},  {{0, 1}, 9.869611 + 4.844128i},
@@ -214,7 +199,7 @@ map Intersting5(
      {{9, 4}, -8.652202 + 7.966708i},  {{9, 5}, -1.213913 + -3.203459i},
      {{9, 6}, -5.197824 + -2.262414i}, {{9, 7}, 5.475765 + 9.442405i},
      {{9, 8}, -2.615598 + -3.443613i}, {{9, 9}, -4.197854 + -9.089752i}},
-    QString("Interesting5"));
+    QString("Sample_function_5"));
 
 void initialize_maps(std::vector<function *> &pv) {
   std::vector<function *> ParametrVector;

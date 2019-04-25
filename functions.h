@@ -1,5 +1,5 @@
-#ifndef FUNKCJE_H
-#define FUNKCJE_H
+#ifndef FUNCTIONS_H
+#define FUNCTIONS_H
 #include <vector>
 
 #include "matbase.h"
