@@ -12,64 +12,10 @@
 
 #define _SIZE 10
 
-/**
- * Class to represent complex numbers.
- */
-class complex {
-private:
-  gsl_complex comp;
-
-public:
-  /// Projection from complex to gsl_complex to enable usage of gsl_complex
-  /// libraries.
-  std::string to_string();
-  operator gsl_complex() const { return comp; }
-  /// Operator of type projection.
-  complex(gsl_complex z) { comp = z; }
-  /// Observators.
-  double re() const { return GSL_REAL(comp); }
-  double im() const { return GSL_IMAG(comp); }
-  /// Constuctors: default, real and complex.
-  complex() { comp = gsl_complex_rect(0.0, 0.0); }
-  complex(double x) { comp = gsl_complex_rect(x, 0.0); }
-  complex(double x, double y) { comp = gsl_complex_rect(x, y); }
-  /// Some important functions.
-  complex inverse() const { return gsl_complex_inverse(comp); }
-  double arg() const { return gsl_complex_arg(comp); }
-  double absolute() const { return gsl_complex_abs(comp); }
-  double absolute2() const { return gsl_complex_abs2(comp); }
-  complex conjugate() const { return gsl_complex_conjugate(comp); }
-  /// Basic math operators.
-  friend complex operator+(const complex &z1, const complex &z2) {
-    return gsl_complex_add(z1, z2);
-  }
-  friend complex operator*(const complex &z1, const complex &z2) {
-    return gsl_complex_mul(z1, z2);
-  }
-  friend complex operator/(const complex &z1, const complex &z2) {
-    return gsl_complex_div(z1, z2);
-  }
-  friend complex operator-(const complex &z1, const complex &z2) {
-    return gsl_complex_sub(z1, z2);
-  }
-  /// Equality tests.
-  friend bool operator==(const complex &z1, const complex &z2) {
-    return ((z1.re() == z2.re()) && (z1.im() == z2.im()));
-  }
-  friend bool operator!=(const complex &z1, const complex &z2) {
-    return !(z1 == z2);
-  }
-  /// Tests of zeros.
-  bool isZero() const { return (re() == 0.0 && im() == 0.0); }
-  bool isNotZero() const { return (!isZero()); }
-  bool isSmall(long double d) const {
-    double rex = re();
-    double imx = im();
-    return ((rex < d) && (rex > -d) && (imx < d) && (imx > -d));
-  }
-};
-
 class fourvector;
+
+std::complex<double> operator*(std::complex<double> comp, float scalar);
+std::complex<double> operator*(float scalar, std::complex<double> comp);
 
 class matrix {
 private:
@@ -77,23 +23,23 @@ private:
 
 public:
   int size() { return _size; }
-  complex coef[_size][_size];
+  std::complex<double> coef[_size][_size];
   matrix giveDx();
   matrix giveDy();
-  complex compute(complex x, complex y);
-  complex compute(fourvector v);
+  std::complex<double> compute(std::complex<double> x, std::complex<double> y);
+  std::complex<double> compute(fourvector v);
 };
 
 /**
  * function from C^2 into C.
  */
-typedef complex (*fun)(complex, complex);
+typedef std::complex<double> (*fun)(std::complex<double>, std::complex<double>);
 /**
  * function from C into C, part of parametrisation.
  */
-typedef complex (*param)(complex);
-complex empty_fun(complex, complex);
-complex empty_fun2(complex);
+typedef std::complex<double> (*param)(std::complex<double>);
+std::complex<double> empty_fun(std::complex<double>, std::complex<double>);
+std::complex<double> empty_fun2(std::complex<double>);
 
 class fourvector {
 private:
@@ -143,20 +89,20 @@ public:
 class function {
 public:
   QString nameofmap;
-  static complex centerX;
-  static complex centerY;
+  static std::complex<double> centerX;
+  static std::complex<double> centerY;
   function(QString n) : nameofmap(n) {}
 
-  virtual complex x(complex z) = 0;
+  virtual std::complex<double> x(std::complex<double> z) = 0;
 
-  virtual complex y(complex z) = 0;
+  virtual std::complex<double> y(std::complex<double> z) = 0;
 
   virtual bool computePoints(std::vector<fourvector> &resultPoints,
                              double radius, long double h,
                              double steps_multiplier) = 0;
 
   static fourvector centerPoint() {
-    return fourvector(centerX.re(), centerX.im(), centerY.re(), centerY.im());
+    return fourvector(centerX.real(), centerX.imag(), centerY.real(), centerY.imag());
   }
 };
 
@@ -172,7 +118,7 @@ private:
 public:
   map(matrix g, QString n) : function(n), fun_matrix(g) {}
 
-  map(complex g[_SIZE][_SIZE], QString n) : function(n) {
+  map(std::complex<double> g[_SIZE][_SIZE], QString n) : function(n) {
     for (int i = 0; i < fun_matrix.size(); i++) {
       for (int j = 0; j < fun_matrix.size(); j++) {
         fun_matrix.coef[i][j] = g[i][j];
@@ -193,7 +139,7 @@ public:
       int j = elem.first.second;
       std::complex<double> value = elem.second;
 
-      fun_matrix.coef[i][j] = complex(value.real(), value.imag());
+      fun_matrix.coef[i][j] = std::complex<double>(value.real(), value.imag());
     }
   }
 
@@ -201,30 +147,27 @@ public:
 
   map();
 
-  complex x(__attribute__((unused)) complex z) override { return complex(); }
-  complex y(__attribute__((unused)) complex z) override { return complex(); }
+  std::complex<double> x(__attribute__((unused)) std::complex<double> z) override { return std::complex<double>(); }
+  std::complex<double> y(__attribute__((unused)) std::complex<double> z) override { return std::complex<double>(); }
 
   bool getToThePoint(long double r, fourvector &zstart);
   bool computePoints(std::vector<fourvector> &resultPoints, double radius,
                      long double h, double steps_multiplier) override;
 
-  complex w(complex z1, complex z2) { return fun_matrix.compute(z1, z2); }
-  complex w(fourvector T) {
-    return fun_matrix.compute(complex(T.x(), T.y()), complex(T.z(), T.u()));
+  std::complex<double> w(std::complex<double> z1, std::complex<double> z2) { return fun_matrix.compute(z1, z2); }
+  std::complex<double> w(fourvector T) {
+    return fun_matrix.compute(std::complex<double>(T.x(), T.y()), std::complex<double>(T.z(), T.u()));
   }
-  complex w1(fourvector T) {
-    return fun_matrix.giveDx().compute(complex(T.x(), T.y()),
-                                       complex(T.z(), T.u()));
+  std::complex<double> w1(fourvector T) {
+    return fun_matrix.giveDx().compute(std::complex<double>(T.x(), T.y()),
+                                       std::complex<double>(T.z(), T.u()));
   }
-  complex w2(fourvector T) {
-    return fun_matrix.giveDy().compute(complex(T.x(), T.y()),
-                                       complex(T.z(), T.u()));
-  }
-  bool isSmaller(long double e, complex z1, complex z2) {
-    return fun_matrix.compute(z1, z2).isSmall(e);
+  std::complex<double> w2(fourvector T) {
+    return fun_matrix.giveDy().compute(std::complex<double>(T.x(), T.y()),
+                                       std::complex<double>(T.z(), T.u()));
   }
   fourvector trajectory(fourvector K);
-  static complex value;
+  static std::complex<double> value;
   static long double deviation;
 
   void printCoefMatrix();
@@ -253,36 +196,36 @@ public:
     Dy = empty_fun2;
   }
   /// reverse complex point to get it in 4 dimensions.
-  fourvector pointOn4Sphere(complex z) {
-    return fourvector(Px(z).re(), Px(z).im(), Py(z).re(), Py(z).im());
+  fourvector pointOn4Sphere(std::complex<double> z) {
+    return fourvector(Px(z).real(), Px(z).imag(), Py(z).real(), Py(z).imag());
   }
-  complex x(complex z) override { return Px(z); }
-  complex y(complex z) override { return Py(z); }
+  std::complex<double> x(std::complex<double> z) override { return Px(z); }
+  std::complex<double> y(std::complex<double> z) override { return Py(z); }
   /// Returns derivative of function  |x-centerX|^2+|y-centerY|^2 over dz.
-  complex dz(complex z) {
-    return Dx(z) * (Px(z).conjugate() - centerX.conjugate()) +
-           Dy(z) * (Py(z).conjugate() - centerY.conjugate());
+  std::complex<double> dz(std::complex<double> z) {
+    return Dx(z) * (std::conj(Px(z)) - std::conj(centerX)) +
+           Dy(z) * (std::conj(Py(z)) - std::conj(centerY));
   }
 
   // ortogonal to derivative of radius.
-  complex pdz(complex z) {
-    complex a = dz(z);
-    if (a.isNotZero())
-      a = a * (1.0 / a.absolute());
-    return complex(a.im(), a.re());
+  std::complex<double> pdz(std::complex<double> z) {
+    std::complex<double> a = dz(z);
+    if (a != std::complex<double>(0,0))
+      a = a * (1.0 / std::abs(a));
+    return std::complex<double>(a.imag(), a.real());
   }
 
-  complex ndz(complex z) {
-    complex a = dz(z);
+  std::complex<double> ndz(std::complex<double> z) {
+    std::complex<double> a = dz(z);
     if (!(a == 0.0))
-      a = a * (1.0 / a.absolute());
-    return a.conjugate();
+      a = a * (1.0 / std::abs(a));
+    return std::conj(a);
   }
-  long double distance(complex z) {
+  long double distance(std::complex<double> z) {
     return (pointOn4Sphere(z) - centerPoint()).length();
   }
 
-  bool getToThePoint(long double h, long double r, complex &zstart);
+  bool getToThePoint(long double h, long double r, std::complex<double> &zstart);
   bool computePoints(std::vector<fourvector> &resultPoints, double radius,
                      long double h, double steps_multiplier) override;
 };
@@ -290,6 +233,5 @@ public:
 fourvector operator*(long double d, fourvector T);
 fourvector ortogonal(fourvector A, fourvector B, fourvector C);
 long double operator*(fourvector A, fourvector B);
-const complex icomplex(0.0, 1.0);
 
 #endif

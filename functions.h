@@ -6,35 +6,35 @@
 
 /// Definitions of multiple functions
 
-complex jaskolkax(complex z);
-complex jaskolkay(complex z);
-complex jaskolkadx(complex z);
-complex jaskolkady(complex z);
+std::complex<double> jaskolkax(std::complex<double> z);
+std::complex<double> jaskolkay(std::complex<double> z);
+std::complex<double> jaskolkadx(std::complex<double> z);
+std::complex<double> jaskolkady(std::complex<double> z);
 
-complex t23_x(complex z);
-complex t23_y(complex z);
-complex t23_dx(complex z);
-complex t23_dy(complex z);
+std::complex<double> t23_x(std::complex<double> z);
+std::complex<double> t23_y(std::complex<double> z);
+std::complex<double> t23_dx(std::complex<double> z);
+std::complex<double> t23_dy(std::complex<double> z);
 
-complex t34_x(complex z);
-complex t34_y(complex z);
-complex t34_dx(complex z);
-complex t34_dy(complex z);
+std::complex<double> t34_x(std::complex<double> z);
+std::complex<double> t34_y(std::complex<double> z);
+std::complex<double> t34_dx(std::complex<double> z);
+std::complex<double> t34_dy(std::complex<double> z);
 
-complex t35_x(complex z);
-complex t35_y(complex z);
-complex t35_dx(complex z);
-complex t35_dy(complex z);
+std::complex<double> t35_x(std::complex<double> z);
+std::complex<double> t35_y(std::complex<double> z);
+std::complex<double> t35_dx(std::complex<double> z);
+std::complex<double> t35_dy(std::complex<double> z);
 
-complex t25_x(complex z);
-complex t25_y(complex z);
-complex t25_dx(complex z);
-complex t25_dy(complex z);
+std::complex<double> t25_x(std::complex<double> z);
+std::complex<double> t25_y(std::complex<double> z);
+std::complex<double> t25_dx(std::complex<double> z);
+std::complex<double> t25_dy(std::complex<double> z);
 
-complex petlax(complex z);
-complex petlay(complex z);
-complex petladx(complex z);
-complex petlady(complex z);
+std::complex<double> petlax(std::complex<double> z);
+std::complex<double> petlay(std::complex<double> z);
+std::complex<double> petladx(std::complex<double> z);
+std::complex<double> petlady(std::complex<double> z);
 
 extern parametr jaskp;
 

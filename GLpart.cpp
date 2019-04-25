@@ -5,10 +5,8 @@
 #include <QGLWidget>
 #include <QtGui>
 
-complex function::centerX(0.0, 0.0);
-complex function::centerY(0.0, 0.0);
-complex map::value(0.0, 0.0);
-long double map::deviation(0.0);
+std::complex<double> function::centerX(0.0, 0.0);
+std::complex<double> function::centerY(0.0, 0.0);
 
 void GLpart::makeList() {
   if (glIsList(knot2) == GL_TRUE)
@@ -83,12 +81,12 @@ void GLpart::rChanged(double r) {
   emit parameterChanged();
 }
 
-void GLpart::z1Changed(complex z1) {
+void GLpart::z1Changed(std::complex<double> z1) {
   parametr::centerX = z1;
   emit parameterChanged();
 }
 
-void GLpart::z2Changed(complex z2) {
+void GLpart::z2Changed(std::complex<double> z2) {
   parametr::centerY = z2;
   emit parameterChanged();
 }
@@ -217,7 +215,7 @@ void GLpart::widthChanged(double d) {
   emit parameterChanged();
 }
 
-void GLpart::parametricCentreChecked(complex z) {
+void GLpart::parametricCentreChecked(std::complex<double> z) {
   parametr::centerX = param_or_map->x(z);
   parametr::centerY = param_or_map->y(z);
   emit xCenChanged(function::centerX);

@@ -220,7 +220,7 @@ ComplexSlider::ComplexSlider(QString nazwa, QWidget *parent = 0)
 
   nazwa2 = nazwa;
 
-  z = complex(0.0, 0.0);
+  z = std::complex<double>(0.0, 0.0);
 
   mainRealSlider = new QSlider(Qt::Horizontal, this);
   mainRealSlider->setRange(-20, 20);
@@ -248,8 +248,8 @@ ComplexSlider::ComplexSlider(QString nazwa, QWidget *parent = 0)
 
   labelComplexSlider = new QLabel(nazwa2, this);
 
-  labelRealSlider = new QLabel(QString("re=%1").arg(double(z.re())), this);
-  labelImagSlider = new QLabel(QString("im=%1").arg(double(z.im())), this);
+  labelRealSlider = new QLabel(QString("re=%1").arg((z.real())), this);
+  labelImagSlider = new QLabel(QString("im=%1").arg((z.imag())), this);
 
   wez = new QPushButton(this);
   wez->setText("Input");
@@ -286,7 +286,7 @@ void ComplexSlider::externalValue(int) {
 
   labelRealSlider->setText(QString("re=%1").arg(x));
   labelImagSlider->setText(QString("im=%1").arg(y));
-  z = complex(x, y);
+  z = std::complex<double>(x, y);
 
   emit ComplexValueChanged(z);
 }
@@ -301,7 +301,7 @@ void ComplexSlider::dialogBoxRequested() {
                                       20.99, 2, &ok2);
 
   if (ok1 && ok2) {
-    z = complex(r1, r2);
+    z = std::complex<double>(r1, r2);
     disconnect(mainRealSlider, SIGNAL(valueChanged(int)), this,
                SLOT(externalValue(int)));
     disconnect(mainImagSlider, SIGNAL(valueChanged(int)), this,
@@ -333,7 +333,7 @@ void ComplexSlider::dialogBoxRequested() {
   }
 }
 
-void ComplexSlider::externalComplex(complex za) {
+void ComplexSlider::externalComplex(std::complex<double> za) {
   z = za;
   disconnect(mainRealSlider, SIGNAL(valueChanged(int)), this,
              SLOT(externalValue(int)));
@@ -344,8 +344,8 @@ void ComplexSlider::externalComplex(complex za) {
   disconnect(otherImagSlider, SIGNAL(valueChanged(int)), this,
              SLOT(externalValue(int)));
 
-  double r1 = za.re();
-  double r2 = za.im();
+  double r1 = za.real();
+  double r2 = za.imag();
 
   mainRealSlider->setValue(int(r1));
   otherRealSlider->setValue(int(100.0 * (r1 - int(r1))));

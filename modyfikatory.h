@@ -112,7 +112,7 @@ private:
   QLabel *labelRealSlider;
   QLabel *labelImagSlider;
   QGridLayout *layoutComplexSlider;
-  complex z;
+  std::complex<double> z;
   QString nazwa2;
   QPushButton *wez;
 
@@ -121,7 +121,7 @@ public:
 
 signals:
 
-  void ComplexValueChanged(complex);
+  void ComplexValueChanged(std::complex<double>);
 
 protected slots:
 
@@ -130,6 +130,6 @@ protected slots:
 
 public slots:
 
-  void externalComplex(complex);
+  void externalComplex(std::complex<double>);
 };
 #endif

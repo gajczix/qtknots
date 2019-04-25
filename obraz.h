@@ -58,7 +58,7 @@ signals:
   void changeFunction(int);
   void changeFunction(map);
   void changeWidth(double);
-  void changeCentre(complex);
+  void changeCentre(std::complex<double>);
 
 public slots:
 

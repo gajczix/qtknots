@@ -210,7 +210,7 @@ map parseMapFromString(std::string input) {
 
 void Obraz::read_from_file() {
   QString fileName = QFileDialog::getOpenFileName(this,
-                               tr("Function from file"), "/home");
+                               tr("Function from file"));
   QFile file(fileName);
   file.open(QIODevice::ReadWrite);
   QByteArray fileContent = file.readAll();
@@ -258,7 +258,7 @@ void Obraz::askForCentre() {
                                       tr("Give imaginary part"), 0.0, -20,
                                       20.99, 2, &ok2);
   if (ok1 && ok2) {
-    emit changeCentre(complex(r1, r2));
+    emit changeCentre(std::complex<double>(r1, r2));
   }
 }
 
