@@ -71,6 +71,7 @@ public slots:
   void z2Changed(complex);
 
   void functionChanged(int);
+  void functionChanged(map);
   void widthChanged(double);
 
   void recomputeLists();

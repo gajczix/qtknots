@@ -1,6 +1,7 @@
 #include <QInputDialog>
 #include <QMenuBar>
 #include <QString>
+#include <QFileDialog>
 #include <QWidget>
 #include <cstdio>
 
@@ -128,11 +129,22 @@ Obraz::Obraz(QWidget *parent) : QWidget(parent) {
       funkcjeMenu->addAction(auxAction);
       connect(auxAction, SIGNAL(triggered()), this, SLOT(f_global()));
     }
+    QString myName = "insert from file";
+
+    QAction *myAction = new QAction(myName, this);
+    connect(myAction, SIGNAL(triggered()), this, SLOT(read_from_file()));
+
+    funkcjeMenu->addAction(myAction);
+
+
 
   }
 
   connect(this, SIGNAL(changeFunction(int)), rysunekGL,
           SLOT(functionChanged(int)));
+  connect(this, SIGNAL(changeFunction(map)), rysunekGL,
+          SLOT(functionChanged(map)));
+
 
   QMenu *gruboscMenu = pasekmenu->addMenu(tr("&Adjust width"));
 
@@ -180,10 +192,43 @@ Obraz::Obraz(QWidget *parent) : QWidget(parent) {
           SLOT(parametricCentreChecked(complex)));
 }
 
+map parseMapFromString(std::string input) {
+  std::string line;
+  std::istringstream f(input);
+  std::vector<std::pair<std::pair<int, int>, std::complex<double>>> coefficient;
+  std::string name;
+  std::getline(f, name);
+  while (std::getline(f, line)) {
+    int i,j;
+    double x,y;
+    sscanf(line.c_str(), "%d %d %lf %lf", &i, &j, &x, &y);
+    coefficient.emplace_back(std::make_pair(std::make_pair(i, j), std::complex<double>(x, y)));
+    std::cout << line << std::endl;
+  }
+  return map(coefficient, QString::fromStdString(name));
+}
+
+void Obraz::read_from_file() {
+  QString fileName = QFileDialog::getOpenFileName(this,
+                               tr("Function from file"), "/home");
+  QFile file(fileName);
+  file.open(QIODevice::ReadWrite);
+  QByteArray fileContent = file.readAll();
+  std::string fileString = fileContent.toStdString();
+  map userMap = parseMapFromString(fileString);
+
+  emit changeFunction(userMap);
+  QString name = userMap.nameofmap;
+  reloadPictures(name);
+}
+
 void Obraz::f_global() {
   QObject *obj = QObject::sender();
+  obj->dumpObjectInfo();
   QString nnm = obj->objectName();
   emit changeFunction(nnm.toInt());
+  //emit changeFunction(Parameters[nnm.toInt()]);
+
   QString name = Parameters[nnm.toInt()]->nameofmap;
   reloadPictures(name);
 }

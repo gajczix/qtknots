@@ -56,6 +56,7 @@ private:
 signals:
 
   void changeFunction(int);
+  void changeFunction(map);
   void changeWidth(double);
   void changeCentre(complex);
 
@@ -69,6 +70,7 @@ public slots:
  void fT35();*/
   //   void fT234();
   void f_global();
+  void read_from_file();
 
   void wGrubosc05();
   void wGrubosc07();

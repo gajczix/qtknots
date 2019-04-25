@@ -403,30 +403,22 @@ void map::printCoefMatrix() {
   }
 }
 
+
 void map::printFriendlyCoefMatrix() {
+  char buffer[1000];
+  write_log("begin of function");
   int n = this->fun_matrix.size();
   for (int i = 0; i < n; i++) {
     for (int j = 0; j < n; j++) {
       complex value = this->fun_matrix.coef[i][j];
-      //write_log("tego szukam: " + value.to_string());
       if (value != 0) {
-        char buffer[1000];
-        if(i != 0 && j != 0){
-          sprintf(buffer, "(%s)x^%dy^%d + ", value.to_string().c_str(), i, j);
-        }
-        else if(j != 0)
-          sprintf(buffer, "(%s)y^%d + ", value.to_string().c_str(), j);
-        else if(i != 0){
-          sprintf(buffer, "(%s)x^%d + ", value.to_string().c_str(), i);
-        }
-        else{
-          sprintf(buffer, "(%s) + ", value.to_string().c_str());
-        }
+        sprintf(buffer, "%d %d %lf %lf", i, j, value.re(), value.im());
         write_log(buffer);
-
       }
     }
   }
+  sprintf(buffer, "end of function");
+  write_log(buffer);
 }
 
 bool parametr::computePoints(std::vector<fourvector> &resultPoints,

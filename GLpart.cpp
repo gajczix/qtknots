@@ -206,6 +206,12 @@ void GLpart::functionChanged(int najaka) {
   emit parameterChanged();
 }
 
+void GLpart::functionChanged(map newMap) {
+    param_or_map = &newMap;
+    write_log(newMap.get_name());
+  emit parameterChanged();
+}
+
 void GLpart::widthChanged(double d) {
   lwidth = d;
   emit parameterChanged();
