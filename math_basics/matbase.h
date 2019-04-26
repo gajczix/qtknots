@@ -2,8 +2,8 @@
 #define MATBASE_H
 
 #include "log.h"
-#include "math_basics/matrix.h"
-#include <QString>
+#include "matrix.h"
+#include "function.h"
 #include <cstdlib>
 #include <gsl/gsl_complex.h>
 #include <gsl/gsl_complex_math.h>
@@ -18,26 +18,7 @@ typedef complex (*param)(complex);
 
 complex empty_function(complex);
 
-class function {
-public:
-    QString nameofmap;
-    static complex centerX;
-    static complex centerY;
 
-    function(QString n) : nameofmap(n) {}
-
-    virtual complex x(complex z) = 0;
-
-    virtual complex y(complex z) = 0;
-
-    virtual bool computePoints(std::vector<fourvector> &resultPoints,
-                               double radius, long double h,
-                               double steps_multiplier) = 0;
-
-    static fourvector centerPoint() {
-      return fourvector(centerX.real(), centerX.imag(), centerY.real(), centerY.imag());
-    }
-};
 
 /**
  * Class to represent all maps from C^2 to C.

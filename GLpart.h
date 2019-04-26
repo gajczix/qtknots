@@ -1,6 +1,6 @@
 #ifndef GLCZESC_H
 #define GLCZESC_H
-#include "math_basics/functions.h"
+#include "math_basics/sample-func.h"
 #include "math_basics/matbase.h"
 #include <QGLWidget>
 

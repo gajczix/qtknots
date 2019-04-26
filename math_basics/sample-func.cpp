@@ -1,6 +1,6 @@
 #include <complex>
 
-#include "functions.h"
+#include "sample-func.h"
 
 complex swallowtail_x(complex z) { return z * z * z - z * 3.0; }
 complex swallowtail_y(complex z) { return z * z * z * z - z * z * 2.0; }
