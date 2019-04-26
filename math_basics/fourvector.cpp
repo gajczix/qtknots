@@ -36,3 +36,7 @@ fourvector ortogonal(fourvector A, fourvector B, fourvector C) {
   // we normalize vector.
   return E * (1.0 / E.length());
 }
+
+long double fourvector::length() {
+  return std::sqrt(wx * wx + wy * wy + wz * wz + wu * wu);
+}

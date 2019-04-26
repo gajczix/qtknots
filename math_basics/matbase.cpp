@@ -49,10 +49,6 @@ void checkIfDistanceMakesSence(long double &odsuw3, long double &refdlug,
   }
 }
 
-long double fourvector::length() {
-  return sqrt(wx * wx + wy * wy + wz * wz + wu * wu);
-}
-
 fourvector map::trajectory(fourvector K) {
   complex z1(K.x(), K.y());
   complex z2(K.z(), K.u());
