@@ -3,9 +3,9 @@
 pushd "$(dirname "${BASH_SOURCE[0]}" )" > /dev/null
 
 if [ -f qtknots ]; then
-  ./build/qtknots
+  ./qtknots
 else
-  ./build/qtknots.app/Contents/MacOS/qtknots
+  ./qtknots.app/Contents/MacOS/qtknots
 fi
 
 popd > /dev/null

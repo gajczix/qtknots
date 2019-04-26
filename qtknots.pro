@@ -47,3 +47,6 @@ SOURCES += functions.cpp \
            log.cpp \
            graphs.cpp
 QT += opengl
+
+OBJECTS_DIR=object_files #Intermediate object files directory
+MOC_DIR=moc_files #Intermediate moc files directory
