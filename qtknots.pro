@@ -33,8 +33,8 @@ DEFINES += QT_DEPRECATED_WARNINGS
 #DEFINES += QT_DISABLE_DEPRECATED_BEFORE=0x060000    # disables all the APIs deprecated before Qt 6.0.0
 
 # Input
-HEADERS += functions.h GLpart.h math_basics/fourvector.h math_basics/matrix.h math_basics/matbase.h modyfikatory.h obraz.h log.h Knot.h crossings.h graphs.h
-SOURCES += functions.cpp \
+HEADERS += math_basics/functions.h GLpart.h math_basics/fourvector.h math_basics/matrix.h math_basics/matbase.h modyfikatory.h obraz.h log.h Knot.h crossings.h graphs.h
+SOURCES += math_basics/functions.cpp \
            GLpart.cpp \
            main.cpp \
            math_basics/fourvector.cpp \

@@ -1,7 +1,7 @@
 #ifndef GLCZESC_H
 #define GLCZESC_H
-#include "functions.h"
-#include "matbase.h"
+#include "math_basics/functions.h"
+#include "math_basics/matbase.h"
 #include <QGLWidget>
 
 class GLpart : public QGLWidget {

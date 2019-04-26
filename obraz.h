@@ -1,7 +1,6 @@
 #ifndef OBRAZ_H
 #define OBRAZ_H
 #include "GLpart.h"
-#include "functions.h"
 #include "modyfikatory.h"
 #include <QLabel>
 #include <QSignalMapper>

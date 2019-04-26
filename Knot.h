@@ -6,7 +6,6 @@
 #define QTKNOTS_WEZEL_H
 
 #include "crossings.h"
-#include "matbase.h"
 #include <set>
 
 class Knot {

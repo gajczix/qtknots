@@ -8,8 +8,7 @@
 #include <QPushButton>
 #include <QSlider>
 #include <QString>
-
-#include "matbase.h"
+#include <complex>
 
 // klasa RotSlider opisuje rotacje obiektu
 
