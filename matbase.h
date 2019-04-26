@@ -2,7 +2,7 @@
 #define MATBASE_H
 
 #include "log.h"
-#include "matrix.h"
+#include "math_basics/matrix.h"
 #include <QString>
 #include <cstdlib>
 #include <gsl/gsl_complex.h>
