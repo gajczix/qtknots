@@ -61,7 +61,7 @@ Obraz::Obraz(QWidget *parent) : QWidget(parent) {
   DNindex->setText("Double negative index is: " +
                    QString(std::to_string(rysunekGL->DNindex).c_str()));
 
-  reloadPictures(jaskp.nameofmap);
+  reloadPictures(swallowtail_p.nameofmap);
 
   QVBoxLayout *Hlayout = new QVBoxLayout();
   QWidget *wid = new QWidget(this);

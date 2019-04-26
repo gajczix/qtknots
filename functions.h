@@ -6,10 +6,10 @@
 
 /// Definitions of multiple functions
 
-complex jaskolkax(complex z);
-complex jaskolkay(complex z);
-complex jaskolkadx(complex z);
-complex jaskolkady(complex z);
+complex swallowtail_x(complex z);
+complex swallowtail_y(complex z);
+complex swallowtail_dx(complex z);
+complex swallowtail_dy(complex z);
 
 complex t23_x(complex z);
 complex t23_y(complex z);
@@ -36,7 +36,7 @@ complex petlay(complex z);
 complex petladx(complex z);
 complex petlady(complex z);
 
-extern parametr jaskp;
+extern parametr swallowtail_p;
 
 void initialize_maps(std::vector<function *> &pv);
 

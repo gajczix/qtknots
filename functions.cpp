@@ -2,10 +2,10 @@
 
 #include "functions.h"
 
-complex jaskolkax(complex z) { return z * z * z - z * 3.0; }
-complex jaskolkay(complex z) { return z * z * z * z - z * z * 2.0; }
-complex jaskolkadx(complex z) { return z * z * 3.0 - 3.0; }
-complex jaskolkady(complex z) { return z * z * z * 4.0 - z * 4.0; }
+complex swallowtail_x(complex z) { return z * z * z - z * 3.0; }
+complex swallowtail_y(complex z) { return z * z * z * z - z * z * 2.0; }
+complex swallowtail_dx(complex z) { return z * z * 3.0 - 3.0; }
+complex swallowtail_dy(complex z) { return z * z * z * 4.0 - z * 4.0; }
 
 complex t23_x(complex z) { return z * z; }
 complex t23_y(complex z) { return z * z * z; }
@@ -42,9 +42,9 @@ complex T235_y(complex t) { return t * t * t + t * t * t * t * t; }
 complex T235_dx(complex t) { return 2 * t; }
 complex T235_dy(complex t) { return 3 * t * t + 5 * t * t * t * t; }
 
-parametr jaskp(jaskolkax, jaskolkay, jaskolkadx, jaskolkady,
+parametr swallowtail_p(swallowtail_x, swallowtail_y, swallowtail_dx, swallowtail_dy,
                QString("Swallowtail"));
-map jask({{{4, 0}, 1},
+map swallowtail({{{4, 0}, 1},
           {{2, 1}, 6},
           {{0, 3}, -1},
           {{2, 0}, -2},
@@ -204,7 +204,7 @@ map Intersting5(
 void initialize_maps(std::vector<function *> &pv) {
   std::vector<function *> ParametrVector;
 
-  ParametrVector.push_back(&jaskp);
+  ParametrVector.push_back(&swallowtail_p);
   ParametrVector.push_back(&Petlap);
   ParametrVector.push_back(&T23p);
   ParametrVector.push_back(&T25p);
@@ -212,7 +212,7 @@ void initialize_maps(std::vector<function *> &pv) {
   ParametrVector.push_back(&T35p);
   ParametrVector.push_back(&T234p);
   ParametrVector.push_back(&T235p);
-  ParametrVector.push_back(&jask);
+  ParametrVector.push_back(&swallowtail);
   ParametrVector.push_back(&Petla);
   ParametrVector.push_back(&T23);
   ParametrVector.push_back(&T25);

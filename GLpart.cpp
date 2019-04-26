@@ -136,7 +136,7 @@ void GLpart::initializeGL() {
   glLineWidth(lwidth);
 }
 
-GLpart::GLpart(QWidget *parent) : QGLWidget(parent), param_or_map(&jaskp) {
+GLpart::GLpart(QWidget *parent) : QGLWidget(parent), param_or_map(&swallowtail_p) {
   xRotCur = 0;
   yRotCur = 0;
   zRotCur = 0;

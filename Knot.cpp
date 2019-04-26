@@ -121,7 +121,7 @@ void Knot::draw(bool isProj) {
 
   for (uint i = 0; i < siz; i++) {
     fourvector drugi = wek[i];
-    drugi = drugi - jaskp.centerPoint();
+    drugi = drugi - swallowtail_p.centerPoint();
     k = drugi.x();
     l = drugi.y();
     m = drugi.z();
