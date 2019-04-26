@@ -2,43 +2,14 @@
 #define MATBASE_H
 
 #include "log.h"
-#include "fourvector.h"
+#include "matrix.h"
 #include <QString>
-#include <complex>
 #include <cstdlib>
 #include <gsl/gsl_complex.h>
 #include <gsl/gsl_complex_math.h>
 #include <gsl/gsl_math.h>
 #include <string>
 #include <vector>
-
-#define _SIZE 10
-
-using complex = std::complex<double>;
-
-class fourvector;
-
-complex operator*(complex comp, float scalar);
-
-complex operator*(float scalar, complex comp);
-
-class matrix {
-private:
-    const static int _size = _SIZE;
-
-public:
-    int size() { return _size; }
-
-    complex coef[_size][_size];
-
-    matrix giveDx();
-
-    matrix giveDy();
-
-    complex compute(complex x, complex y);
-
-    complex compute(fourvector v);
-};
 
 /**
  * function from C into C, part of parametrisation.

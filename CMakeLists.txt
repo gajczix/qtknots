@@ -31,6 +31,10 @@ add_executable(qtknots
         log.cpp
         log.h
         main.cpp
+        fourvector.h
+        fourvector.cpp
+        matrix.h
+        matrix.cpp
         matbase.cpp
         matbase.h
         modyfikatory.cpp
