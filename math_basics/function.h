@@ -8,6 +8,7 @@
 #include "matrix.h"
 #include <QString>
 #include <vector>
+#include "log.h"
 
 class function {
 public:
@@ -28,6 +29,14 @@ public:
     static fourvector centerPoint() {
       return fourvector(centerX.real(), centerX.imag(), centerY.real(), centerY.imag());
     }
+
+    void checkIfHole(long int &stashcount, long int &stashcount2, short &isEnd);
+    void checkIfDistanceMakesSence(long double &odsuw3, long double &refdlug,
+                                   fourvector &abyraz, short &isEnd,
+                                   fourvector &refpunkt2);
+
+    int seed = time(NULL);
+    double RandomValue();
 };
 
 

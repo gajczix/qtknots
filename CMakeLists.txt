@@ -35,6 +35,12 @@ add_executable(qtknots
         math_basics/fourvector.cpp
         math_basics/matrix.h
         math_basics/matrix.cpp
+        math_basics/function.h
+        math_basics/function.cpp
+        math_basics/map.h
+        math_basics/map.cpp
+        math_basics/parametr.h
+        math_basics/parametr.cpp
         matbase.cpp
         matbase.h
         modyfikatory.cpp

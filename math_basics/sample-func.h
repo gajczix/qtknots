@@ -2,7 +2,8 @@
 #define FUNCTIONS_H
 #include <vector>
 
-#include "matbase.h"
+#include "map.h"
+#include "parametr.h"
 
 /// Definitions of multiple functions
 
