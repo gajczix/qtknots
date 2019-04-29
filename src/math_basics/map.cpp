@@ -3,7 +3,7 @@
 //
 
 #include "map.h"
-#include "log.h"
+#include "src/log.h"
 
 double randDouble() { return ((double)std::rand() / (double)RAND_MAX); }
 

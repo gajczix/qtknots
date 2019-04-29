@@ -18,35 +18,35 @@ find_package(Qt5Widgets CONFIG REQUIRED)
 find_package(Qt5OpenGL)
 
 add_executable(qtknots
-        crossings.cpp
-        crossings.h
+        src/crossings.cpp
+        src/crossings.h
         functions.cpp
         functions.h
-        GLpart.cpp
-        GLpart.h
-        graphs.cpp
-        graphs.h
-        Knot.cpp
-        Knot.h
-        log.cpp
-        log.h
-        main.cpp
-        math_basics/fourvector.h
-        math_basics/fourvector.cpp
-        math_basics/matrix.h
-        math_basics/matrix.cpp
-        math_basics/function.h
-        math_basics/function.cpp
-        math_basics/map.h
-        math_basics/map.cpp
-        math_basics/parametr.h
-        math_basics/parametr.cpp
-        matbase.cpp
-        matbase.h
-        modyfikatory.cpp
-        modyfikatory.h
-        obraz.cpp
-        obraz.h)
+        src/GLpart.cpp
+        src/GLpart.h
+        src/graphs.cpp
+        src/graphs.h
+        src/Knot.cpp
+        src/Knot.h
+        src/log.cpp
+        src/log.h
+        src/main.cpp
+        src/math_basics/fourvector.h
+        src/math_basics/fourvector.cpp
+        src/math_basics/matrix.h
+        src/math_basics/matrix.cpp
+        src/math_basics/function.h
+        src/math_basics/function.cpp
+        src/math_basics/map.h
+        src/math_basics/map.cpp
+        src/math_basics/parametr.h
+        src/math_basics/parametr.cpp
+        src/matbase.cpp
+        src/matbase.h
+        src/modyfikatory.cpp
+        src/modyfikatory.h
+        src/obraz.cpp
+        src/obraz.h)
 
 target_link_libraries(qtknots Qt5::Widgets)
 qt5_use_modules(qtknots Widgets OpenGL)

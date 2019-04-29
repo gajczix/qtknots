@@ -33,36 +33,36 @@ DEFINES += QT_DEPRECATED_WARNINGS
 #DEFINES += QT_DISABLE_DEPRECATED_BEFORE=0x060000    # disables all the APIs deprecated before Qt 6.0.0
 
 # Input
-HEADERS += math_basics/sample-func.h \
-           math_basics/function.h \
-           GLpart.h \
-           math_basics/fourvector.h \
-           math_basics/matrix.h \
-           math_basics/map.h \
-           math_basics/parametr.h \
-           math_basics/matbase.h \
-           modyfikatory.h \
-           obraz.h \
-           log.h \
-           Knot.h \
-           crossings.h \
-           graphs.h
-SOURCES += math_basics/sample-func.cpp \
-           math_basics/function.cpp \
-           GLpart.cpp \
-           main.cpp \
-           math_basics/fourvector.cpp \
-           math_basics/matrix.cpp \
-           math_basics/map.cpp \
-           math_basics/parametr.cpp \
-           math_basics/matbase.cpp \
-           modyfikatory.cpp \
-           obraz.cpp \
-           Knot.cpp \
-           crossings.cpp \
-           log.cpp \
-           graphs.cpp
+HEADERS += src/math_basics/sample-func.h \
+           src/math_basics/function.h \
+           src/GLpart.h \
+           src/math_basics/fourvector.h \
+           src/math_basics/matrix.h \
+           src/math_basics/map.h \
+           src/math_basics/parametr.h \
+           src/math_basics/matbase.h \
+           src/modyfikatory.h \
+           src/obraz.h \
+           src/log.h \
+           src/Knot.h \
+           src/crossings.h \
+           src/graphs.h
+SOURCES += src/math_basics/sample-func.cpp \
+           src/math_basics/function.cpp \
+           src/GLpart.cpp \
+           src/main.cpp \
+           src/math_basics/fourvector.cpp \
+           src/math_basics/matrix.cpp \
+           src/math_basics/map.cpp \
+           src/math_basics/parametr.cpp \
+           src/math_basics/matbase.cpp \
+           src/modyfikatory.cpp \
+           src/obraz.cpp \
+           src/Knot.cpp \
+           src/crossings.cpp \
+           src/log.cpp \
+           src/graphs.cpp
 QT += opengl
 
-OBJECTS_DIR=object_files #Intermediate object files directory
-MOC_DIR=moc_files #Intermediate moc files directory
+OBJECTS_DIR=build #Intermediate object files directory
+MOC_DIR=build #Intermediate moc files directory

@@ -5,7 +5,7 @@
 
 #ifndef QTKNOTS_PRZECIECIA_H
 #define QTKNOTS_PRZECIECIA_H
-#include "math_basics/matbase.h"
+#include "src/math_basics/matbase.h"
 #include "log.h"
 #include <map>
 #include <set>

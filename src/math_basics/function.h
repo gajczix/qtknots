@@ -8,7 +8,7 @@
 #include "matrix.h"
 #include <QString>
 #include <vector>
-#include "log.h"
+#include "src/log.h"
 
 class function {
 public:

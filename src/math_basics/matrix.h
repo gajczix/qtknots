@@ -5,7 +5,7 @@
 #ifndef QTKNOTS_MATRIX_H
 #define QTKNOTS_MATRIX_H
 
-#include "math_basics/fourvector.h"
+#include "fourvector.h"
 #include <complex>
 
 #define _SIZE 10
