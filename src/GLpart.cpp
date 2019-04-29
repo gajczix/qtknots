@@ -5,6 +5,8 @@
 #include <QGLWidget>
 #include <QtGui>
 
+#pragma clang diagnostic push
+#pragma clang diagnostic ignored "-Wdeprecated-declarations"
 complex function::centerX(0.0, 0.0);
 complex function::centerY(0.0, 0.0);
 
@@ -191,15 +193,15 @@ void GLpart::wheelEvent(QWheelEvent *event) {
   updateGL();
 }
 
-void GLpart::functionChanged(int najaka) {
+void GLpart::functionChanged(int newIndex) {
 
-  if (najaka == (int)ParamVector.size() - 1) {
+  if (newIndex == (int)ParamVector.size() - 1) {
     write_log("random function changed:");
     map *random = new map();
     param_or_map = random;
-    write_log(random->get_name());
+    write_log(random->get_name()); //TODO: log into file
   } else {
-    param_or_map = ParamVector[najaka];
+    param_or_map = ParamVector[newIndex];
   }
   emit parameterChanged();
 }
@@ -236,3 +238,5 @@ void GLpart::generatePictures(std::string name) {
   write_log(command);
   std::system(command.c_str());
 }
+
+#pragma clang diagnostic pop
