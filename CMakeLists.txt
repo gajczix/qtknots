@@ -20,8 +20,6 @@ find_package(Qt5OpenGL)
 add_executable(qtknots
         src/crossings.cpp
         src/crossings.h
-        functions.cpp
-        functions.h
         src/GLpart.cpp
         src/GLpart.h
         src/graphs.cpp
@@ -41,8 +39,10 @@ add_executable(qtknots
         src/math_basics/map.cpp
         src/math_basics/parametr.h
         src/math_basics/parametr.cpp
-        src/matbase.cpp
-        src/matbase.h
+        src/math_basics/matbase.cpp
+        src/math_basics/matbase.h
+        src/math_basics/sample-func.cpp
+        src/math_basics/sample-func.h
         src/modyfikatory.cpp
         src/modyfikatory.h
         src/obraz.cpp
