@@ -7,7 +7,7 @@
 std::vector<std::vector<int>> getAllCycles(graph_type &graph) {
   // TODO: implement
   // std::vector<std::vector<std::pair<int, int>>> a = graph.edges;
-  (void) graph;
+  (void)graph;
   return std::vector<std::vector<int>>();
 }
 
@@ -21,11 +21,9 @@ getAllSubsets(std::set<std::pair<int, int>> &candidate_edges) {
     elements_order.push_back(edge);
   }
 
-
-  for(int i = 0; i < n; i++){ //TODO: change to power od 2
-    for(int j = 0; j < n; j++){
-      if((1 << j) & i){
-
+  for (int i = 0; i < n; i++) { // TODO: change to power od 2
+    for (int j = 0; j < n; j++) {
+      if ((1 << j) & i) {
       }
     }
   }

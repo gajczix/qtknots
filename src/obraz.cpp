@@ -1,6 +1,6 @@
+#include <QFileDialog>
 #include <QInputDialog>
 #include <QMenuBar>
-#include <QFileDialog>
 #include <QWidget>
 #include <cstdio>
 
@@ -120,7 +120,7 @@ Obraz::Obraz(QWidget *parent) : QWidget(parent) {
 
     for (unsigned int wal = 0; wal < Parameters.size(); wal++) {
       auxAction = new QAction(Parameters[wal]->nameofmap, this);
-      if(wal == Parameters.size() - 1){
+      if (wal == Parameters.size() - 1) {
         auxAction->setShortcut(Qt::Key_R | Qt::CTRL);
       }
       stringAction.setNum(wal);
@@ -134,16 +134,12 @@ Obraz::Obraz(QWidget *parent) : QWidget(parent) {
     connect(myAction, SIGNAL(triggered()), this, SLOT(read_from_file()));
 
     funkcjeMenu->addAction(myAction);
-
-
-
   }
 
   connect(this, SIGNAL(changeFunction(int)), rysunekGL,
           SLOT(functionChanged(int)));
   connect(this, SIGNAL(changeFunction(map)), rysunekGL,
           SLOT(functionChanged(map)));
-
 
   QMenu *gruboscMenu = pasekmenu->addMenu(tr("&Adjust width"));
 
@@ -198,18 +194,19 @@ map parseMapFromString(std::string input) {
   std::string name;
   std::getline(f, name);
   while (std::getline(f, line)) {
-    int i,j;
-    double x,y;
+    int i, j;
+    double x, y;
     sscanf(line.c_str(), "%d %d %lf %lf", &i, &j, &x, &y);
-    coefficient.emplace_back(std::make_pair(std::make_pair(i, j), complex(x, y)));
+    coefficient.emplace_back(
+        std::make_pair(std::make_pair(i, j), complex(x, y)));
     std::cout << line << std::endl;
   }
   return map(coefficient, QString::fromStdString(name));
 }
 
 void Obraz::read_from_file() {
-  QString fileName = QFileDialog::getOpenFileName(this,
-                               tr("Function from file"));
+  QString fileName =
+      QFileDialog::getOpenFileName(this, tr("Function from file"));
   QFile file(fileName);
   file.open(QIODevice::ReadWrite);
   QByteArray fileContent = file.readAll();
@@ -226,7 +223,6 @@ void Obraz::f_global() {
   obj->dumpObjectInfo();
   QString nnm = obj->objectName();
   emit changeFunction(nnm.toInt());
-  //emit changeFunction(Parameters[nnm.toInt()]);
 
   QString name = Parameters[nnm.toInt()]->nameofmap;
   reloadPictures(name);
@@ -261,7 +257,7 @@ void Obraz::askForCentre() {
   }
 }
 
-void setupDNIndexLabel(QLabel * label, int fontSize){
+void setupDNIndexLabel(QLabel *label, int fontSize) {
   QFont font("Arial", fontSize, QFont::Bold);
   label->setFont(font);
   label->setWordWrap(true);
@@ -271,7 +267,7 @@ void Obraz::reloadPictures(QString name) {
   QPixmap pix("./pictures/" + name + ".png");
   setupDNIndexLabel(DNindex, 20);
   DNindex->setText("Double negative index for " + name + " is: " +
-                 QString(std::to_string(rysunekGL->DNindex).c_str()));
+                   QString(std::to_string(rysunekGL->DNindex).c_str()));
   picture1->setPixmap(pix);
   QPixmap pix2("./pdpictures/" + name + ".svg");
   picture2->setPixmap(pix2.scaled(300, 300, Qt::KeepAspectRatio));

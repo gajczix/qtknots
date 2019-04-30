@@ -302,14 +302,15 @@ void printPDCode(std::vector<PDCrossing> PDs, function *pFunction) {
   std::string file_name = "pdcodes/" + name + ".py";
   FILE *file = fopen(file_name.c_str(), "w");
 
-  fprintf(file, "#!/usr/bin/env python2.7\n"
-                "\n"
-                "import sys\n"
-                /* "sys.path.append('/Users/krystynka/miniconda2/lib/python2.7/" */
-                /* "site-packages')\n" */
-                "import snappy\n"
-                "\n"
-                "a = snappy.Link([");
+  fprintf(file,
+          "#!/usr/bin/env python2.7\n"
+          "\n"
+          "import sys\n"
+          /* "sys.path.append('/Users/krystynka/miniconda2/lib/python2.7/" */
+          /* "site-packages')\n" */
+          "import snappy\n"
+          "\n"
+          "a = snappy.Link([");
 
   int n = PDs.size();
   for (int i = 0; i < n; i++) {

@@ -138,7 +138,8 @@ void GLpart::initializeGL() {
   glLineWidth(lwidth);
 }
 
-GLpart::GLpart(QWidget *parent) : QGLWidget(parent), param_or_map(&swallowtail_p) {
+GLpart::GLpart(QWidget *parent)
+    : QGLWidget(parent), param_or_map(&swallowtail_p) {
   xRotCur = 0;
   yRotCur = 0;
   zRotCur = 0;
@@ -199,7 +200,7 @@ void GLpart::functionChanged(int newIndex) {
     write_log("random function changed:");
     map *random = new map();
     param_or_map = random;
-    write_log(random->get_name()); //TODO: log into file
+    write_log(random->get_name()); // TODO: log into file
   } else {
     param_or_map = ParamVector[newIndex];
   }
@@ -207,8 +208,8 @@ void GLpart::functionChanged(int newIndex) {
 }
 
 void GLpart::functionChanged(map newMap) {
-    param_or_map = &newMap;
-    write_log(newMap.get_name());
+  param_or_map = &newMap;
+  write_log(newMap.get_name());
   emit parameterChanged();
 }
 
@@ -226,9 +227,8 @@ void GLpart::parametricCentreChecked(complex z) {
 }
 
 void GLpart::generatePictures(std::string name) {
-  std::string command =
-      "exec bash -c 'neato -T png -s400 graphs/" + name +
-      ".dot > pictures/" + name + ".png'";
+  std::string command = "exec bash -c 'neato -T png -s400 graphs/" + name +
+                        ".dot > pictures/" + name + ".png'";
   std::system(command.c_str());
 
   command = "exec bash -c 'rm -f pdpictures/" + name + ".svg'";
