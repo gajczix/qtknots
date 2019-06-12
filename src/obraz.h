@@ -51,7 +51,8 @@ signals:
 public slots:
 
   void f_global();
-  void read_from_file();
+  void read_func_from_file();
+  void read_knot_from_file();
 
   void wWidth05();
   void wWidth07();

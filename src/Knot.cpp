@@ -195,3 +195,13 @@ Knot::assignMappings(std::vector<double> &begins,
   }
   return mapa;
 }
+
+void Knot::dumpPoints(){
+  write_log("starting points");
+  for(fourvector elem : this->wek){
+      char buffer[100];
+      sprintf(buffer, "%Lf %Lf %Lf %Lf", elem.x(), elem.y(), elem.z(), elem.u());
+      write_log(buffer);
+  }
+  write_log("ending points");
+}

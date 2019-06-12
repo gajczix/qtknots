@@ -43,6 +43,8 @@ public:
    */
   std::vector<PDCrossing> givePDCode(std::map<int, double> &angle_map);
 
+  void dumpPoints();
+
 private:
   std::map<double, double> assignMappings(std::vector<double> &begins,
                                           std::map<int, double> &angle_map);

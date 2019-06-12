@@ -20,6 +20,7 @@ void GLpart::makeList() {
 
   Knot newKnot(radius, param_or_map);
   newKnot.draw();
+  newKnot.dumpPoints();
 
   newKnot.giveIntersectionNumber();
 

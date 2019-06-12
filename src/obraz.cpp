@@ -128,12 +128,20 @@ Obraz::Obraz(QWidget *parent) : QWidget(parent) {
       funkcjeMenu->addAction(auxAction);
       connect(auxAction, SIGNAL(triggered()), this, SLOT(f_global()));
     }
-    QString myName = "insert from file";
+    QString funcButton = "insert function from file";
 
-    QAction *myAction = new QAction(myName, this);
-    connect(myAction, SIGNAL(triggered()), this, SLOT(read_from_file()));
+    QAction *functionFromFileAction = new QAction(funcButton, this);
+    connect(functionFromFileAction, SIGNAL(triggered()), this, SLOT(read_func_from_file()));
 
-    funkcjeMenu->addAction(myAction);
+    funkcjeMenu->addAction(functionFromFileAction);
+
+    QString knotButton = "insert knot from file";
+
+    QAction * knotFromFileAction = new QAction(knotButton, this);
+    connect(knotFromFileAction, SIGNAL(triggered()), this, SLOT(read_knot_from_file()));
+
+    funkcjeMenu->addAction(knotFromFileAction);
+
   }
 
   connect(this, SIGNAL(changeFunction(int)), rysunekGL,
@@ -204,7 +212,22 @@ map parseMapFromString(std::string input) {
   return map(coefficient, QString::fromStdString(name));
 }
 
-void Obraz::read_from_file() {
+void Obraz::read_func_from_file() {
+  QString fileName =
+      QFileDialog::getOpenFileName(this, tr("Function from file"));
+  QFile file(fileName);
+  file.open(QIODevice::ReadWrite);
+  QByteArray fileContent = file.readAll();
+  std::string fileString = fileContent.toStdString();
+  map userMap = parseMapFromString(fileString);
+
+  emit changeFunction(userMap);
+  QString name = userMap.nameofmap;
+  reloadPictures(name);
+}
+
+void Obraz::read_knot_from_file() {
+  write_log("TAK, udało się!");
   QString fileName =
       QFileDialog::getOpenFileName(this, tr("Function from file"));
   QFile file(fileName);
