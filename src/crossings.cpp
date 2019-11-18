@@ -53,21 +53,14 @@ std::pair<double, double> giveIntersectVector(Point p1, Point p2, Point q1,
   Point vectorQ(q2.x - q1.x, q2.y - q1.y);
   Point vectorP(p2.x - p1.x, p2.y - p1.y);
 
+  if (vectorP.norm().x == vectorQ.norm().x &&
+      vectorP.norm().y == vectorQ.norm().y) {
+    return std::make_pair(-1, -1);
+  }
+
   double beta = ((q1.x - p1.x) * vectorP.y - (q1.y - p1.y) * vectorP.x) /
                 (vectorP.x * vectorQ.y - vectorQ.x * vectorP.y);
   double alfa = (q1.y + beta * vectorQ.y - p1.y) / vectorP.y;
-
-  char buffer[400];
-
-  if (alfa <= 1 && alfa >= 0 && beta <= 1 && beta >= 0) {
-    sprintf(buffer, "alfa: %f, beta: %f", alfa, beta);
-    write_log(buffer);
-  }
-
-  assert(((p1.x + (p2.x - p1.x) * alfa) - (q1.x + (q2.x - q1.x) * beta)) <
-         0.000001);
-  assert(((p1.y + (p2.y - p1.y) * alfa) - (q1.y + (q2.y - q1.y) * beta)) <
-         0.000001);
 
   return std::make_pair(alfa, beta);
 }
