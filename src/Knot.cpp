@@ -21,7 +21,7 @@ Knot::Knot(double radius, function *function) : R(radius), func(function) {
   std::set<int> sizes_of_wek;
   std::vector<fourvector> all_wek;
   std::vector<fourvector> representation;
-
+  name = function->nameofmap.toUtf8().constData();
   int last_size = 0;
 
   write_log("knot initialization");
@@ -69,6 +69,9 @@ int Knot::giveIntersectionNumber() {
             std::to_string(wynik));
   return wynik;
 }
+
+Knot::Knot(std::vector<fourvector> data, std::string name)
+    : name(name), wek(data), R(1) {}
 
 std::vector<PDCrossing> Knot::givePDCode(std::map<int, double> &angle_map) {
   std::vector<double> begins;
@@ -121,7 +124,10 @@ void Knot::draw(bool isProj) {
 
   for (uint i = 0; i < siz; i++) {
     fourvector drugi = wek[i];
-    drugi = drugi - this->func->centerPoint();
+    if (this->func != NULL) {
+      drugi = drugi - this->func->centerPoint();
+    }
+
     k = drugi.x();
     l = drugi.y();
     m = drugi.z();
@@ -182,12 +188,6 @@ Knot::assignMappings(std::vector<double> &begins,
     mapa[begins[i]] = map_counter;
     mapa[begins[i + 1]] = map_counter;
 
-    /*
-    char buffer[200];
-    sprintf(buffer, "mapuje: %.2f na %d\nmapuje: %.2f na %d", begins[i],
-            map_counter, begins[i + 1], map_counter);
-    write_log(buffer);
-    */
     updateAngleMap(angle_map, map_counter, begins[i], begins[i + 1], this->wek,
                    this->R);
 
@@ -196,12 +196,12 @@ Knot::assignMappings(std::vector<double> &begins,
   return mapa;
 }
 
-void Knot::dumpPoints(){
+void Knot::dumpPoints() {
   write_log("starting points");
-  for(fourvector elem : this->wek){
-      char buffer[100];
-      sprintf(buffer, "%Lf %Lf %Lf %Lf", elem.x(), elem.y(), elem.z(), elem.u());
-      write_log(buffer);
+  for (fourvector elem : this->wek) {
+    char buffer[100];
+    sprintf(buffer, "%Lf %Lf %Lf %Lf", elem.x(), elem.y(), elem.z(), elem.u());
+    write_log(buffer);
   }
   write_log("ending points");
 }

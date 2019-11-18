@@ -39,6 +39,10 @@ private:
   function *param_or_map;
   std::vector<function *> ParamVector;
 
+  /// users points
+  std::vector<fourvector> userPoints;
+  std::string userName;
+
   /// pointers to the list
   GLuint knot;
   GLuint knot2;
@@ -72,6 +76,7 @@ public slots:
 
   void functionChanged(int);
   void functionChanged(map);
+  void functionChanged(std::vector<fourvector> points, std::string name);
   void widthChanged(double);
 
   void recomputeLists();

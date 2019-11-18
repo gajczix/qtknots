@@ -17,23 +17,31 @@ void GLpart::makeList() {
 
   rysuje = true;
   glNewList(knot2, GL_COMPILE);
+  Knot newKnot;
 
-  Knot newKnot(radius, param_or_map);
+  if (param_or_map != NULL) {
+    newKnot = Knot(radius, param_or_map);
+  } else {
+    newKnot = Knot(userPoints, userName);
+  }
+
   newKnot.draw();
   newKnot.dumpPoints();
-
   newKnot.giveIntersectionNumber();
 
   std::map<int, double> angle_map;
   auto PDCode = newKnot.givePDCode(angle_map);
-  printPDCode(PDCode, param_or_map);
+
+  std::string knotName = newKnot.getName();
+  printPDCode(PDCode, knotName);
 
   auto graph = generateGraphFromPDCode(PDCode, angle_map);
-  std::string name = param_or_map->nameofmap.toUtf8().constData();
-  printGraph(graph, name);
-  generatePictures(name);
+
+  printGraph(graph, knotName);
+  generatePictures(knotName);
 
   this->DNindex = doubleNegativeIndex(graph);
+
   glEndList();
   rysuje = false;
 
@@ -211,6 +219,13 @@ void GLpart::functionChanged(int newIndex) {
 void GLpart::functionChanged(map newMap) {
   param_or_map = &newMap;
   write_log(newMap.get_name());
+  emit parameterChanged();
+}
+
+void GLpart::functionChanged(std::vector<fourvector> points, std::string name) {
+  param_or_map = NULL;
+  userPoints = points;
+  userName = name;
   emit parameterChanged();
 }
 

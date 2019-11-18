@@ -141,7 +141,7 @@ void printCrossings(std::map<int, GaussCrossing> mapa);
 
 void printGraph(graph_type graph, std::string name);
 
-void printPDCode(std::vector<PDCrossing> PDs, function *pFunction);
+void printPDCode(std::vector<PDCrossing> PDs, std::string name);
 
 std::map<int, std::vector<std::pair<int, int>>>
 giveBadIndexes(std::vector<preCrossing> &toFix,

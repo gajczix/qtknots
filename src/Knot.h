@@ -9,11 +9,14 @@
 #include <set>
 
 class Knot {
-  std::vector<fourvector> wek;
+
   double R;
   function *func;
+  std::vector<fourvector> wek;
+  std::string name;
 
 public:
+  Knot() = default;
   /**
    * Constructor of object Knot. It computes vector with point representation of
    * the knot.
@@ -21,6 +24,14 @@ public:
    * @param function - function used to compute knot.
    */
   Knot(double R, function *funkcja);
+
+  /**
+   * Constructor of object Knot. It computes vector with point representation of
+   * the knot.
+   * @param radius - radius of the ball we intersect function with.
+   * @param function - function used to compute knot.
+   */
+  Knot(std::vector<fourvector> data, std::string name);
 
   /**
    * Function to compute numbers of crossings in knot's diagram.
@@ -44,6 +55,8 @@ public:
   std::vector<PDCrossing> givePDCode(std::map<int, double> &angle_map);
 
   void dumpPoints();
+
+  std::string getName() { return name; }
 
 private:
   std::map<double, double> assignMappings(std::vector<double> &begins,

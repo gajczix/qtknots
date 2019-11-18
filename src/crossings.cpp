@@ -297,8 +297,7 @@ void printGraph(graph_type graph, std::string name) {
   fclose(file);
 }
 
-void printPDCode(std::vector<PDCrossing> PDs, function *pFunction) {
-  std::string name = pFunction->nameofmap.toUtf8().constData();
+void printPDCode(std::vector<PDCrossing> PDs, std::string name) {
   std::string file_name = "pdcodes/" + name + ".py";
   FILE *file = fopen(file_name.c_str(), "w");
 

@@ -45,6 +45,7 @@ signals:
 
   void changeFunction(int);
   void changeFunction(map);
+  void changeFunction(std::vector<fourvector>, std::string);
   void changeWidth(double);
   void changeCentre(std::complex<double>);
 

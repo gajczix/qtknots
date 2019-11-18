@@ -131,23 +131,27 @@ Obraz::Obraz(QWidget *parent) : QWidget(parent) {
     QString funcButton = "insert function from file";
 
     QAction *functionFromFileAction = new QAction(funcButton, this);
-    connect(functionFromFileAction, SIGNAL(triggered()), this, SLOT(read_func_from_file()));
+    connect(functionFromFileAction, SIGNAL(triggered()), this,
+            SLOT(read_func_from_file()));
 
     funkcjeMenu->addAction(functionFromFileAction);
 
     QString knotButton = "insert knot from file";
 
-    QAction * knotFromFileAction = new QAction(knotButton, this);
-    connect(knotFromFileAction, SIGNAL(triggered()), this, SLOT(read_knot_from_file()));
+    QAction *knotFromFileAction = new QAction(knotButton, this);
+    connect(knotFromFileAction, SIGNAL(triggered()), this,
+            SLOT(read_knot_from_file()));
 
     funkcjeMenu->addAction(knotFromFileAction);
-
   }
 
   connect(this, SIGNAL(changeFunction(int)), rysunekGL,
           SLOT(functionChanged(int)));
   connect(this, SIGNAL(changeFunction(map)), rysunekGL,
           SLOT(functionChanged(map)));
+  connect(this, SIGNAL(changeFunction(std::vector<fourvector>, std::string)),
+          rysunekGL,
+          SLOT(functionChanged(std::vector<fourvector>, std::string)));
 
   QMenu *gruboscMenu = pasekmenu->addMenu(tr("&Adjust width"));
 
@@ -212,6 +216,19 @@ map parseMapFromString(std::string input) {
   return map(coefficient, QString::fromStdString(name));
 }
 
+std::vector<fourvector> parseKnotFromString(std::string input) {
+  std::string line;
+  std::istringstream f(input);
+  std::vector<fourvector> points;
+  while (std::getline(f, line)) {
+    double x, y, z, u;
+    sscanf(line.c_str(), "%lf %lf %lf %lf", &x, &y, &z, &u);
+    points.emplace_back(x, y, z, u);
+    std::cout << line << std::endl;
+  }
+  return points;
+}
+
 void Obraz::read_func_from_file() {
   QString fileName =
       QFileDialog::getOpenFileName(this, tr("Function from file"));
@@ -227,18 +244,18 @@ void Obraz::read_func_from_file() {
 }
 
 void Obraz::read_knot_from_file() {
-  write_log("TAK, udało się!");
   QString fileName =
       QFileDialog::getOpenFileName(this, tr("Function from file"));
   QFile file(fileName);
   file.open(QIODevice::ReadWrite);
   QByteArray fileContent = file.readAll();
   std::string fileString = fileContent.toStdString();
-  map userMap = parseMapFromString(fileString);
+  std::vector<fourvector> points = parseKnotFromString(fileString);
 
-  emit changeFunction(userMap);
-  QString name = userMap.nameofmap;
-  reloadPictures(name);
+  QFileInfo fileInfo(file);
+  QString functionName(fileInfo.fileName());
+  emit changeFunction(points, functionName.toStdString());
+  reloadPictures(functionName);
 }
 
 void Obraz::f_global() {
