@@ -3,12 +3,6 @@
 //
 
 #include "Knot.h"
-#include <GL/glut.h>
-#include <QGLWidget>
-#include <QtCore/qglobal.h>
-#include <QtGui>
-
-int lwidth = 2.0;
 
 bool isNewComponent(std::vector<fourvector> &component,
                     std::vector<fourvector> &representation);
@@ -21,7 +15,7 @@ Knot::Knot(double radius, function *function) : R(radius), func(function) {
   std::set<int> sizes_of_wek;
   std::vector<fourvector> all_wek;
   std::vector<fourvector> representation;
-  name = function->nameofmap.toUtf8().constData();
+  name = function->nameofmap;
   int last_size = 0;
 
   write_log("knot initialization");
@@ -71,7 +65,7 @@ int Knot::giveIntersectionNumber() {
 }
 
 Knot::Knot(std::vector<fourvector> data, std::string name)
-    : name(name), wek(data), R(1) {}
+    : R(1), wek(data), name(name) {}
 
 std::vector<PDCrossing> Knot::givePDCode(std::map<int, double> &angle_map) {
   std::vector<double> begins;
@@ -113,40 +107,6 @@ std::vector<PDCrossing> Knot::givePDCode(std::map<int, double> &angle_map) {
   }
 
   return result;
-}
-
-void Knot::draw(bool isProj) {
-  glLineWidth(lwidth);
-  glBegin(GL_LINE_STRIP);
-  float k, l, m, e;
-  double color;
-  double siz = double(wek.size());
-
-  for (uint i = 0; i < siz; i++) {
-    fourvector drugi = wek[i];
-    if (this->func != NULL) {
-      drugi = drugi - this->func->centerPoint();
-    }
-
-    k = drugi.x();
-    l = drugi.y();
-    m = drugi.z();
-    e = drugi.u();
-    color = 3.0 * double(i) / siz;
-    if (color < 1.0)
-      glColor3f(color, 1.0 - color, 0);
-    else if (color < 2.0)
-      glColor3f(2.0 - color, 0.0, color - 1.0);
-    else
-      glColor3f(0.0, color - 2.0, 3.0 - color);
-
-    if (isProj) {
-      glVertex2f(k / (m + R), l / (m + R));
-    } else {
-      glVertex3f(k / (m + R), l / (m + R), (-1 * (R - e)) / (m + R));
-    }
-  }
-  glEnd();
 }
 
 /**

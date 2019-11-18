@@ -17,9 +17,9 @@ private:
     std::string secret_name = "";
 
 public:
-    map(matrix g, QString n) : function(n), fun_matrix(g) {}
+    map(matrix g, std::string n) : function(n), fun_matrix(g) {}
 
-    map(complex g[_SIZE][_SIZE], QString n) : function(n) {
+    map(complex **g, std::string name) : function(name) {
       for (int i = 0; i < fun_matrix.size(); i++) {
         for (int j = 0; j < fun_matrix.size(); j++) {
           fun_matrix.coef[i][j] = g[i][j];
@@ -27,8 +27,8 @@ public:
       }
     }
 
-    map(std::vector<std::pair<std::pair<int, int>, complex>> m, QString n)
-    : function(n) {
+    map(std::vector<std::pair<std::pair<int, int>, complex>> m, std::string name)
+    : function(name) {
         for (int i = 0; i < _SIZE; i++) {
           for (int j = 0; j < _SIZE; j++) {
             fun_matrix.coef[i][j] = 0;

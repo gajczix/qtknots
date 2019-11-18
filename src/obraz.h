@@ -66,7 +66,7 @@ public slots:
 
   void askForCentre();
 
-  void reloadPictures(QString index);
+  void reloadPictures(std::string index);
 };
 
 #endif

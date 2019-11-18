@@ -6,17 +6,16 @@
 #define QTKNOTS_FUNCTION_H
 
 #include "matrix.h"
-#include <QString>
 #include <vector>
 #include "src/log.h"
 
 class function {
 public:
-    QString nameofmap;
+    std::string nameofmap;
     static complex centerX;
     static complex centerY;
 
-    function(QString n) : nameofmap(n) {}
+    function(std::string name) : nameofmap(name) {}
 
     virtual complex x(complex z) = 0;
 

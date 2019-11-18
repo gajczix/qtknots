@@ -43,37 +43,37 @@ complex T235_dx(complex t) { return 2 * t; }
 complex T235_dy(complex t) { return 3 * t * t + 5 * t * t * t * t; }
 
 parametr swallowtail_p(swallowtail_x, swallowtail_y, swallowtail_dx, swallowtail_dy,
-               QString("Swallowtail"));
+               "Swallowtail");
 map swallowtail({{{4, 0}, 1},
           {{2, 1}, 6},
           {{0, 3}, -1},
           {{2, 0}, -2},
           {{0, 2}, 6},
           {{0, 1}, -9}},
-         QString("map:Swallowtail"));
+         "map:Swallowtail");
 
-parametr Petlap(petlax, petlay, petladx, petlady, QString("y^2=x^3-x^2"));
+parametr Petlap(petlax, petlay, petladx, petlady, "y^2=x^3-x^2");
 map Petla({{{3, 0}, 1}, {{2, 0}, -1}, {{0, 2}, -1}},
-          QString("map:y^2=x^3-x^2"));
+          "map:y^2=x^3-x^2");
 
-parametr T23p(t23_x, t23_y, t23_dx, t23_dy, QString("x^2-y^3"));
-map T23({{{2, 0}, 1}, {{0, 3}, -1}}, QString("map:x^2-y^3"));
+parametr T23p(t23_x, t23_y, t23_dx, t23_dy, "x^2-y^3");
+map T23({{{2, 0}, 1}, {{0, 3}, -1}}, "map:x^2-y^3");
 
-parametr T25p(t25_x, t25_y, t25_dx, t25_dy, QString("x^2-y^5"));
+parametr T25p(t25_x, t25_y, t25_dx, t25_dy, "x^2-y^5");
 
-map T25({{{2, 0}, 1}, {{0, 5}, -1}}, QString("map:x^2-y^5"));
+map T25({{{2, 0}, 1}, {{0, 5}, -1}}, "map:x^2-y^5");
 
-parametr T34p(t34_x, t34_y, t34_dx, t34_dy, QString("x^3-y^4"));
-map T34({{{3, 0}, 1}, {{0, 4}, -1}}, QString("map:x^3-y^4"));
+parametr T34p(t34_x, t34_y, t34_dx, t34_dy, "x^3-y^4");
+map T34({{{3, 0}, 1}, {{0, 4}, -1}}, "map:x^3-y^4");
 
-parametr T35p(t35_x, t35_y, t35_dx, t35_dy, QString("x^3-y^5"));
-map T35({{{3, 0}, 1}, {{0, 5}, -1}}, QString("map:x^3-y^5"));
+parametr T35p(t35_x, t35_y, t35_dx, t35_dy, "x^3-y^5");
+map T35({{{3, 0}, 1}, {{0, 5}, -1}}, "map:x^3-y^5");
 
-parametr T234p(T234_x, T234_y, T234_dx, T234_dy, QString("T234"));
+parametr T234p(T234_x, T234_y, T234_dx, T234_dy, "T234");
 map T234({{{4, 0}, 1}, {{2, 1}, -2}, {{1, 2}, -4}, {{0, 3}, -1}, {{0, 2}, 1}},
-         QString("map:T234"));
+         "map:T234");
 
-parametr T235p(T235_x, T235_y, T235_dx, T235_dy, QString("x^3-y^5"));
+parametr T235p(T235_x, T235_y, T235_dx, T235_dy, "x^3-y^5");
 
 map RandomFunc;
 
@@ -94,7 +94,7 @@ map Interesting({{{0, 0}, (-0.445727 + 1.305957i)},
                  {{4, 4}, -3.164222 + -9.985651i},
                  {{4, 6}, -9.193600 + 8.403399i},
                  {{8, 8}, 4.594428 + -7.025386i}},
-                QString("Sample_function_1"));
+                "Sample_function_1");
 
 map Interesting2(
     {{{0, 0}, 1.092680 + 1.609801i},   {{0, 2}, -4.442457 + 1.562065i},
@@ -112,7 +112,7 @@ map Interesting2(
      {{8, 0}, -3.798988 + -6.980100i}, {{8, 2}, 0.420889 + 6.597741i},
      {{8, 4}, -9.886540 + 7.141485i},  {{8, 6}, 2.001604 + 9.288251i},
      {{8, 8}, 4.982076 + 1.294225i},   {{8, 10}, -4.032252 + 2.452472i}},
-    QString("Sample_function_2"));
+    "Sample_function_2");
 
 map Interesting3(
     {{{0, 0}, -3.529319 + -5.840687i}, {{0, 2}, -5.017438 + 1.529616i},
@@ -128,7 +128,7 @@ map Interesting3(
      {{8, 0}, -9.481358 + 9.511357i},  {{8, 2}, -3.370252 + 4.729921i},
      {{8, 4}, -6.140815 + -2.676954i}, {{8, 6}, -3.845788 + 1.023939i},
      {{8, 8}, 5.920479 + -9.497867i}},
-    QString("Sample_function_3"));
+    "Sample_function_3");
 
 map Interesting4(
     {{{0, 0}, -1.372483 + -5.411576i}, {{0, 2}, -8.494251 + -0.237448i},
@@ -146,7 +146,7 @@ map Interesting4(
      {{8, 0}, -9.355703 + -4.624793i}, {{8, 2}, 7.946058 + -4.682592i},
      {{8, 4}, 2.887755 + -0.704872i},  {{8, 6}, 5.247914 + 2.465825i},
      {{8, 8}, -5.383826 + 6.921710i},  {{8, 10}, 1.922615 + -8.315015i}},
-    QString("Sample_function_4"));
+    "Sample_function_4");
 
 map Intersting5(
     {{{0, 0}, 2.791791 + -2.950850i},  {{0, 1}, 9.869611 + 4.844128i},
@@ -199,7 +199,7 @@ map Intersting5(
      {{9, 4}, -8.652202 + 7.966708i},  {{9, 5}, -1.213913 + -3.203459i},
      {{9, 6}, -5.197824 + -2.262414i}, {{9, 7}, 5.475765 + 9.442405i},
      {{9, 8}, -2.615598 + -3.443613i}, {{9, 9}, -4.197854 + -9.089752i}},
-    QString("Sample_function_5"));
+    "Sample_function_5");
 
 void initialize_maps(std::vector<function *> &pv) {
   std::vector<function *> ParametrVector;

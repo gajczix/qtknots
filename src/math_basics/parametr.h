@@ -22,14 +22,14 @@ private:
     param Dy;
 
 public:
-    parametr(param X, param Y, param DX, param DY, QString n) : function(n) {
+    parametr(param X, param Y, param DX, param DY, std::string n) : function(n) {
       Px = X;
       Py = Y;
       Dx = DX;
       Dy = DY;
     }
 
-    parametr() : function(QString("empty fun")) {
+    parametr() : function("empty fun") {
       Px = empty_function;
       Py = empty_function;
       Dx = empty_function;

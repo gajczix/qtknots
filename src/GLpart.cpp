@@ -3,12 +3,49 @@
 #include "graphs.h"
 #include <GL/glut.h>
 #include <QGLWidget>
+#include <QtCore/qglobal.h>
 #include <QtGui>
 
 #pragma clang diagnostic push
 #pragma clang diagnostic ignored "-Wdeprecated-declarations"
 complex function::centerX(0.0, 0.0);
 complex function::centerY(0.0, 0.0);
+
+int lwidth = 2.0;
+
+void Knot::draw(bool isProj) {
+  glLineWidth(lwidth);
+  glBegin(GL_LINE_STRIP);
+  float k, l, m, e;
+  double color;
+  double siz = double(wek.size());
+
+  for (uint i = 0; i < siz; i++) {
+    fourvector drugi = wek[i];
+    if (this->func != NULL) {
+      drugi = drugi - this->func->centerPoint();
+    }
+
+    k = drugi.x();
+    l = drugi.y();
+    m = drugi.z();
+    e = drugi.u();
+    color = 3.0 * double(i) / siz;
+    if (color < 1.0)
+      glColor3f(color, 1.0 - color, 0);
+    else if (color < 2.0)
+      glColor3f(2.0 - color, 0.0, color - 1.0);
+    else
+      glColor3f(0.0, color - 2.0, 3.0 - color);
+
+    if (isProj) {
+      glVertex2f(k / (m + R), l / (m + R));
+    } else {
+      glVertex3f(k / (m + R), l / (m + R), (-1 * (R - e)) / (m + R));
+    }
+  }
+  glEnd();
+}
 
 void GLpart::makeList() {
   if (glIsList(knot2) == GL_TRUE)

@@ -38,7 +38,7 @@ fourvector fakeDoStep(map m, fourvector StartPoint, long double skok,
 }
 
 
-map::map() : function(QString("map:random")) {
+map::map() : function("map:random") {
   std::string name = "";
   std::srand(time(NULL));
   int max_x = std::max(10, rand() % 10 + 2);

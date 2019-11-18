@@ -119,7 +119,8 @@ Obraz::Obraz(QWidget *parent) : QWidget(parent) {
     QString stringAction;
 
     for (unsigned int wal = 0; wal < Parameters.size(); wal++) {
-      auxAction = new QAction(Parameters[wal]->nameofmap, this);
+      auxAction =
+          new QAction(QString(Parameters[wal]->nameofmap.c_str()), this);
       if (wal == Parameters.size() - 1) {
         auxAction->setShortcut(Qt::Key_R | Qt::CTRL);
       }
@@ -213,7 +214,7 @@ map parseMapFromString(std::string input) {
         std::make_pair(std::make_pair(i, j), complex(x, y)));
     std::cout << line << std::endl;
   }
-  return map(coefficient, QString::fromStdString(name));
+  return map(coefficient, name);
 }
 
 std::vector<fourvector> parseKnotFromString(std::string input) {
@@ -239,8 +240,7 @@ void Obraz::read_func_from_file() {
   map userMap = parseMapFromString(fileString);
 
   emit changeFunction(userMap);
-  QString name = userMap.nameofmap;
-  reloadPictures(name);
+  reloadPictures(userMap.nameofmap);
 }
 
 void Obraz::read_knot_from_file() {
@@ -255,7 +255,7 @@ void Obraz::read_knot_from_file() {
   QFileInfo fileInfo(file);
   QString functionName(fileInfo.fileName());
   emit changeFunction(points, functionName.toStdString());
-  reloadPictures(functionName);
+  reloadPictures(functionName.toStdString());
 }
 
 void Obraz::f_global() {
@@ -264,8 +264,7 @@ void Obraz::f_global() {
   QString nnm = obj->objectName();
   emit changeFunction(nnm.toInt());
 
-  QString name = Parameters[nnm.toInt()]->nameofmap;
-  reloadPictures(name);
+  reloadPictures(Parameters[nnm.toInt()]->nameofmap);
 }
 
 void Obraz::wWidth05() { emit changeWidth(0.5); }
@@ -303,12 +302,13 @@ void setupDNIndexLabel(QLabel *label, int fontSize) {
   label->setWordWrap(true);
 }
 
-void Obraz::reloadPictures(QString name) {
-  QPixmap pix("./pictures/" + name + ".png");
+void Obraz::reloadPictures(std::string name) {
+  QString qname = QString(name.c_str());
+  QPixmap pix("./pictures/" + qname + ".png");
   setupDNIndexLabel(DNindex, 20);
-  DNindex->setText("Double negative index for " + name + " is: " +
+  DNindex->setText("Double negative index for " + qname + " is: " +
                    QString(std::to_string(rysunekGL->DNindex).c_str()));
   picture1->setPixmap(pix);
-  QPixmap pix2("./pdpictures/" + name + ".svg");
+  QPixmap pix2("./pdpictures/" + qname + ".svg");
   picture2->setPixmap(pix2.scaled(300, 300, Qt::KeepAspectRatio));
 }
