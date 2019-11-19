@@ -174,7 +174,6 @@ std::vector<fourvector> parseKnotFromString(std::string input) {
     double x, y, z, u;
     sscanf(line.c_str(), "%lf %lf %lf %lf", &x, &y, &z, &u);
     points.emplace_back(x, y, z, u);
-    std::cout << line << std::endl;
   }
   return points;
 }
