@@ -12,10 +12,10 @@
 class function {
 public:
     std::string NameOfFunction;
-    static complex centerX;
-    static complex centerY;
+    complex centerX;
+    complex centerY;
 
-    function(std::string name) : NameOfFunction(name) {}
+    function(std::string name) : NameOfFunction(name), centerX(0.0, 0.0), centerY(0.0, 0.0) {}
 
     virtual complex x(complex z) = 0;
 
@@ -27,7 +27,7 @@ public:
 
     virtual ~function() = 0;
 
-    static fourvector centerPoint() {
+    fourvector centerPoint() {
       return fourvector(centerX.real(), centerX.imag(), centerY.real(), centerY.imag());
     }
 

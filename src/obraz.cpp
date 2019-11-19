@@ -217,19 +217,6 @@ map parseMapFromString(std::string input) {
   return map(coefficient, name);
 }
 
-std::vector<fourvector> parseKnotFromString(std::string input) {
-  std::string line;
-  std::istringstream f(input);
-  std::vector<fourvector> points;
-  while (std::getline(f, line)) {
-    double x, y, z, u;
-    sscanf(line.c_str(), "%lf %lf %lf %lf", &x, &y, &z, &u);
-    points.emplace_back(x, y, z, u);
-    std::cout << line << std::endl;
-  }
-  return points;
-}
-
 void Obraz::read_func_from_file() {
   QString fileName =
       QFileDialog::getOpenFileName(this, tr("Function from file"));

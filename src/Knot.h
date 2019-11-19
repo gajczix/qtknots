@@ -63,4 +63,6 @@ private:
                                           std::map<int, double> &angle_map);
 };
 
+std::vector<fourvector> parseKnotFromString(std::string input);
+
 #endif // QTKNOTS_WEZEL_H

@@ -165,3 +165,16 @@ void Knot::dumpPoints() {
   }
   write_log("ending points");
 }
+
+std::vector<fourvector> parseKnotFromString(std::string input) {
+  std::string line;
+  std::istringstream f(input);
+  std::vector<fourvector> points;
+  while (std::getline(f, line)) {
+    double x, y, z, u;
+    sscanf(line.c_str(), "%lf %lf %lf %lf", &x, &y, &z, &u);
+    points.emplace_back(x, y, z, u);
+    std::cout << line << std::endl;
+  }
+  return points;
+}

@@ -1,7 +1,8 @@
 #ifndef GLCZESC_H
 #define GLCZESC_H
-#include "src/math_basics/matbase.h"
-#include "src/math_basics/sample-func.h"
+
+#include "Knot.h"
+#include "graphs.h"
 #include <QGLWidget>
 
 class GLpart : public QGLWidget {

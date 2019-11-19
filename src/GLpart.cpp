@@ -1,6 +1,4 @@
 #include "GLpart.h"
-#include "Knot.h"
-#include "graphs.h"
 #include <GL/glut.h>
 #include <QGLWidget>
 #include <QtCore/qglobal.h>
@@ -8,8 +6,6 @@
 
 #pragma clang diagnostic push
 #pragma clang diagnostic ignored "-Wdeprecated-declarations"
-complex function::centerX(0.0, 0.0);
-complex function::centerY(0.0, 0.0);
 
 int lwidth = 2.0;
 
@@ -130,12 +126,12 @@ void GLpart::rChanged(double r) {
 }
 
 void GLpart::z1Changed(complex z1) {
-  parametr::centerX = z1;
+  param_or_map->centerX = z1;
   emit parameterChanged();
 }
 
 void GLpart::z2Changed(complex z2) {
-  parametr::centerY = z2;
+  param_or_map->centerX = z2;
   emit parameterChanged();
 }
 
@@ -272,10 +268,10 @@ void GLpart::widthChanged(double d) {
 }
 
 void GLpart::parametricCentreChecked(complex z) {
-  parametr::centerX = param_or_map->x(z);
-  parametr::centerY = param_or_map->y(z);
-  emit xCenChanged(function::centerX);
-  emit yCenChanged(function::centerY);
+  param_or_map->centerX = param_or_map->x(z);
+  param_or_map->centerY = param_or_map->y(z);
+  emit xCenChanged(param_or_map->centerX);
+  emit yCenChanged(param_or_map->centerY);
   emit parameterChanged();
 }
 
