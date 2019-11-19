@@ -17,8 +17,20 @@ int main(int argc, char *argv[]) {
   std::vector<fourvector> points = parseKnotFromString(content);
   Knot newKnot(points, "customName");
 
-  std::cout << newKnot.giveIntersectionNumber() << std::endl;
-  std::cout << newKnot.getName() << std::endl;
-  // newKnot.dumpPoints();
+  std::cout << "number of crossings: " << newKnot.giveIntersectionNumber()
+            << std::endl;
+
+  std::map<int, double> angle_map;
+  auto PDCode = newKnot.givePDCode(angle_map);
+
+  // std::string knotName = newKnot.getName();
+  // printPDCode(PDCode, knotName);
+
+  auto graph = generateGraphFromPDCode(PDCode, angle_map);
+
+  // printGraph(graph, knotName);
+
+  std::cout << "DN Index: " << doubleNegativeIndex(graph) << std::endl;
+
   return 0;
 }
