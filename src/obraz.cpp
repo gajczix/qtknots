@@ -118,17 +118,6 @@ Obraz::Obraz(QWidget *parent) : QWidget(parent) {
     QAction *auxAction;
     QString stringAction;
 
-    for (unsigned int wal = 0; wal < Parameters.size(); wal++) {
-      auxAction =
-          new QAction(QString(Parameters[wal]->NameOfFunction.c_str()), this);
-      if (wal == Parameters.size() - 1) {
-        auxAction->setShortcut(Qt::Key_R | Qt::CTRL);
-      }
-      stringAction.setNum(wal);
-      auxAction->setObjectName(stringAction);
-      funkcjeMenu->addAction(auxAction);
-      connect(auxAction, SIGNAL(triggered()), this, SLOT(f_global()));
-    }
     QString funcButton = "insert function from file";
 
     QAction *functionFromFileAction = new QAction(funcButton, this);
@@ -137,13 +126,25 @@ Obraz::Obraz(QWidget *parent) : QWidget(parent) {
 
     funkcjeMenu->addAction(functionFromFileAction);
 
-    QString knotButton = "insert knot from file";
+    QString knotButton = "insert points from file";
 
     QAction *knotFromFileAction = new QAction(knotButton, this);
     connect(knotFromFileAction, SIGNAL(triggered()), this,
             SLOT(read_knot_from_file()));
 
     funkcjeMenu->addAction(knotFromFileAction);
+
+    for (unsigned int wal = 0; wal < Parameters.size(); wal++) {
+      auxAction =
+          new QAction(QString(Parameters[wal]->NameOfFunction.c_str()), this);
+      if (wal == 0) {
+        auxAction->setShortcut(Qt::Key_R | Qt::CTRL);
+      }
+      stringAction.setNum(wal);
+      auxAction->setObjectName(stringAction);
+      funkcjeMenu->addAction(auxAction);
+      connect(auxAction, SIGNAL(triggered()), this, SLOT(f_global()));
+    }
   }
 
   connect(this, SIGNAL(changeFunction(int)), rysunekGL,
