@@ -61,7 +61,7 @@ Obraz::Obraz(QWidget *parent) : QWidget(parent) {
   DNindex->setText("Double negative index is: " +
                    QString(std::to_string(rysunekGL->DNindex).c_str()));
 
-  reloadPictures(swallowtail_p.nameofmap);
+  reloadPictures(swallowtail_p.NameOfFunction);
 
   QVBoxLayout *Hlayout = new QVBoxLayout();
   QWidget *wid = new QWidget(this);
@@ -120,7 +120,7 @@ Obraz::Obraz(QWidget *parent) : QWidget(parent) {
 
     for (unsigned int wal = 0; wal < Parameters.size(); wal++) {
       auxAction =
-          new QAction(QString(Parameters[wal]->nameofmap.c_str()), this);
+          new QAction(QString(Parameters[wal]->NameOfFunction.c_str()), this);
       if (wal == Parameters.size() - 1) {
         auxAction->setShortcut(Qt::Key_R | Qt::CTRL);
       }
@@ -240,7 +240,7 @@ void Obraz::read_func_from_file() {
   map userMap = parseMapFromString(fileString);
 
   emit changeFunction(userMap);
-  reloadPictures(userMap.nameofmap);
+  reloadPictures(userMap.NameOfFunction);
 }
 
 void Obraz::read_knot_from_file() {
@@ -264,7 +264,7 @@ void Obraz::f_global() {
   QString nnm = obj->objectName();
   emit changeFunction(nnm.toInt());
 
-  reloadPictures(Parameters[nnm.toInt()]->nameofmap);
+  reloadPictures(Parameters[nnm.toInt()]->NameOfFunction);
 }
 
 void Obraz::wWidth05() { emit changeWidth(0.5); }

@@ -12,6 +12,8 @@ void function::checkIfHole(long int &stashcount, long int &stashcount2, short &i
   stashcount2 = stashcount;
 }
 
+function::~function() {};
+
 
 void function::checkIfDistanceMakesSence(long double &odsuw3, long double &refdlug,
                                fourvector &abyraz, short &isEnd,

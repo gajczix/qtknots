@@ -7,15 +7,15 @@
 
 #include "matrix.h"
 #include <vector>
-#include "src/log.h"
+#include "../log.h"
 
 class function {
 public:
-    std::string nameofmap;
+    std::string NameOfFunction;
     static complex centerX;
     static complex centerY;
 
-    function(std::string name) : nameofmap(name) {}
+    function(std::string name) : NameOfFunction(name) {}
 
     virtual complex x(complex z) = 0;
 
@@ -24,6 +24,8 @@ public:
     virtual bool computePoints(std::vector<fourvector> &resultPoints,
                                double radius, long double h,
                                double steps_multiplier) = 0;
+
+    virtual ~function() = 0;
 
     static fourvector centerPoint() {
       return fourvector(centerX.real(), centerX.imag(), centerY.real(), centerY.imag());

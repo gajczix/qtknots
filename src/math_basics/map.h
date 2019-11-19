@@ -5,7 +5,7 @@
 #ifndef QTKNOTS_MAP_H
 #define QTKNOTS_MAP_H
 
-#include "function.h"
+#include "parametr.h"
 
 /**
  * Class to represent all maps from C^2 to C.

@@ -15,7 +15,7 @@ Knot::Knot(double radius, function *function) : R(radius), func(function) {
   std::set<int> sizes_of_wek;
   std::vector<fourvector> all_wek;
   std::vector<fourvector> representation;
-  name = function->nameofmap;
+  name = function->NameOfFunction;
   int last_size = 0;
 
   write_log("knot initialization");
