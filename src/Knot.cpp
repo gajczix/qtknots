@@ -157,13 +157,14 @@ Knot::assignMappings(std::vector<double> &begins,
 }
 
 void Knot::dumpPoints() {
-  write_log("starting points");
+  std::cout << "points begin:\n";
   for (fourvector elem : this->wek) {
     char buffer[100];
-    sprintf(buffer, "%Lf %Lf %Lf %Lf", elem.x(), elem.y(), elem.z(), elem.u());
-    write_log(buffer);
+    sprintf(buffer, "%Lf %Lf %Lf %Lf\n", elem.x(), elem.y(), elem.z(),
+            elem.u());
+    std::cout << buffer;
   }
-  write_log("ending points");
+  std::cout << "points end\n\n";
 }
 
 std::vector<fourvector> parseKnotFromString(std::string input) {
@@ -176,4 +177,20 @@ std::vector<fourvector> parseKnotFromString(std::string input) {
     points.emplace_back(x, y, z, u);
   }
   return points;
+}
+
+map parseMapFromString(std::string input) {
+  std::string line;
+  std::istringstream f(input);
+  std::vector<std::pair<std::pair<int, int>, complex>> coefficient;
+  std::string name;
+  std::getline(f, name);
+  while (std::getline(f, line)) {
+    int i, j;
+    double x, y;
+    sscanf(line.c_str(), "%d %d %lf %lf", &i, &j, &x, &y);
+    coefficient.emplace_back(
+        std::make_pair(std::make_pair(i, j), complex(x, y)));
+  }
+  return map(coefficient, name);
 }

@@ -201,23 +201,6 @@ Obraz::Obraz(QWidget *parent) : QWidget(parent) {
           SLOT(parametricCentreChecked(complex)));
 }
 
-map parseMapFromString(std::string input) {
-  std::string line;
-  std::istringstream f(input);
-  std::vector<std::pair<std::pair<int, int>, complex>> coefficient;
-  std::string name;
-  std::getline(f, name);
-  while (std::getline(f, line)) {
-    int i, j;
-    double x, y;
-    sscanf(line.c_str(), "%d %d %lf %lf", &i, &j, &x, &y);
-    coefficient.emplace_back(
-        std::make_pair(std::make_pair(i, j), complex(x, y)));
-    std::cout << line << std::endl;
-  }
-  return map(coefficient, name);
-}
-
 void Obraz::read_func_from_file() {
   QString fileName =
       QFileDialog::getOpenFileName(this, tr("Function from file"));

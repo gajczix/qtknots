@@ -1,5 +1,5 @@
 # qtknots
-Program for computing knots, crossings and double negative index from C-link.
+Program for computing knots, crossings and double negative index from C-link. It has graphic and no-graphic versions.
 
 REQUIRED PACKAGES:
 - pkg-config
@@ -27,10 +27,16 @@ TO INSTALL, CALL:
 ```
 ./qtknots/install.sh
 ```
-TO RUN THE PROGRAM, CALL:
+TO RUN THE GRAPHIC PROGRAM, CALL:
 ```
 ./qtknots/run.sh
 ```
+TO RUN THE NON-GRAPHIC PROGRAM, CALL:
+```
+./qtknots/no-graphic-run.sh -function file-with-your-function
+./qtknots/no-graphic-run.sh -points file-with-your-points
+```
+
 TO CLEAN AFTER INSTALLATION, CALL:
 ```
 ./qtknots/clean.sh

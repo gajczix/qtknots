@@ -65,5 +65,6 @@ private:
 };
 
 std::vector<fourvector> parseKnotFromString(std::string input);
+map parseMapFromString(std::string input);
 
 #endif // QTKNOTS_WEZEL_H
