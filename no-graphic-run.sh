@@ -1,19 +1,16 @@
 #!/bin/bash
 
 pushd "$(dirname "${BASH_SOURCE[0]}" )" > /dev/null
-cd ./src/no-graphics
-make &> /dev/null
-cd ../../
 
 case "$1" in
     -function)
         echo "reading function from file"
-        ./src/no-graphics/qtknots-no-graphics 1 $2
+        ./build/no-graphics/qtknots-no-graphics 1 $2
         echo "done"
     ;;    
     -points)
         echo "reading points from file"  
-        ./src/no-graphics/qtknots-no-graphics 0 $2  
+        ./build/no-graphics/qtknots-no-graphics 0 $2
         echo "done"
     ;;
 

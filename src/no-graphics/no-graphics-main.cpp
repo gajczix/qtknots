@@ -1,4 +1,4 @@
-#include <../Knot.h>
+#include "../Knot.h"
 #include <fstream>
 #include <iostream>
 #include <string>

@@ -10,6 +10,12 @@ rm -rf .qmake.stash qtknots qtknots.app Makefile
 rm -rf pdcodes graphs pdpictures pictures log_output.txt
 rm -rf pyenv
 
+if [ -d build ]; then
+    cd ./build/no-graphics
+    make clean
+    cd ../..
+    rm -rf ./build
+fi
 popd > /dev/null
 
 echo "Done"
